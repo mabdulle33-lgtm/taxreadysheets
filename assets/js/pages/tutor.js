@@ -1,4 +1,4 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
 import { tutorRate, clean } from '../calc.js';
 
 bindForm('calc', (v) => {
@@ -25,4 +25,10 @@ bindForm('calc', (v) => {
     perHour: gbp(r.takeHomePerWorkingHour),
     note
   });
+  chart([
+    { label: 'Agency or platform fees', value: r.platformFees, tone: 5 },
+    { label: 'Teaching costs', value: clean(v.costs), tone: 1 },
+    { label: 'Tax & NI', value: r.tax, tone: 2 },
+    { label: 'Your take-home', value: r.profitNeeded - r.tax, tone: 4 }
+  ], { value: gbp(r.turnoverNeeded, { whole: true }), label: 'a year' });
 });

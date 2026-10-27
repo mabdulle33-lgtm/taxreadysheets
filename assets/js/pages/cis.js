@@ -1,5 +1,5 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
-import { cisRefund } from '../calc.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
+import { cisRefund, clean } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
 const statusLabel = { registered: 'registered', unregistered: 'unregistered', grossPayment: 'gross payment' };
@@ -41,6 +41,13 @@ bindForm('calc', (v) => {
       ? `CIS deducted is an estimate: ${Math.round((RATES.cis[v.status] ?? RATES.cis.registered) * 100)}% of your labour (${gbp(r.labour)}) at ${statusLabel[v.status] || 'registered'} rate. Type your real total for a sharper figure.`
       : ''
   });
+  const gross = clean(v.gross);
+  chart([
+    { label: 'Materials & expenses', value: gross - r.profit, tone: 1 },
+    { label: 'Income tax', value: r.incomeTax, tone: 2 },
+    { label: 'Class 4 NI', value: r.class4, tone: 3 },
+    { label: 'Take-home', value: r.profit - r.liability, tone: 4 }
+  ], { value: gbp(gross, { whole: true }), label: 'paid to you' });
   const big = document.querySelector('[data-out="headline"]');
   if (big) big.className = 'big-number ' + (r.outcome === 'owed' ? 'bad-text' : r.outcome === 'refund' ? 'good-text' : '');
 });

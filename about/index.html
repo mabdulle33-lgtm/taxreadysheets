@@ -19,6 +19,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F5257">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script src="../assets/js/theme-init.js"></script>
+<link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/style.css">
 <script type="module" src="../assets/js/site.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://taxreadysheets.co.uk/"},{"@type":"ListItem","position":2,"name":"About","item":"https://taxreadysheets.co.uk/about/"}]}</script>
@@ -26,23 +28,31 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
-<div class="wrap">
-<a class="brand" href="../"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#F2A541"/><rect x="14" y="12" width="36" height="40" rx="4" fill="#faf8f4"/><path d="M20 22h24M20 30h24M20 38h12" stroke="#0F5257" stroke-width="3.5" stroke-linecap="round"/></svg><span>TaxReadySheets</span></a>
-<nav class="site-nav" aria-label="Main">
+<div class="wrap header-inner">
+<a class="brand" href="../"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#F2A541"/><rect x="14" y="12" width="36" height="40" rx="5" fill="#fffaf2"/><path d="M20 22h24M20 30h24M20 38h12" stroke="#0F5257" stroke-width="3.5" stroke-linecap="round"/><circle cx="43" cy="42" r="8" fill="#0F5257"/><path d="M39.5 42.2l2.4 2.4 4.3-4.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TaxReady<span class="brand-accent">Sheets</span></span></a>
+<nav class="site-nav" id="site-nav" aria-label="Main">
 <ul>
 <li><a href="../calculators/">Calculators</a></li>
 <li><a href="../guides/">Guides</a></li>
 <li><a href="../about/" aria-current="page">About</a></li>
-<li><a href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">Etsy shop<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+<li class="nav-cta"><a class="btn btn-amber btn-sm" href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">Etsy shop<span class="visually-hidden"> (opens in a new tab)</span></a></li>
 </ul>
 </nav>
+<div class="header-tools">
+<button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"><svg class="icon i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="icon i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></button>
+<button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg class="icon i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="icon i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
 </div>
 </header>
 <main id="main">
-<div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li aria-current="page">About</li></ol></nav></div>
-<div class="wrap"><div class="content">
+<div class="page-hero">
+<div class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li aria-current="page">About</li></ol></nav>
 <h1>About TaxReadySheets</h1>
 <p class="lead">TaxReadySheets exists to make self-employed tax in the UK feel less like guesswork.</p>
+</div>
+</div>
+<div class="wrap"><div class="content prose">
 <p>Most people who work for themselves are not short of effort — they are short of time and clear numbers. They want to know roughly what they owe, what to charge and when things are due, without wading through pages of guidance first. So we build small, focused calculators that answer one question each, in plain English.</p>
 <h2>What we make</h2>
 <ul>
@@ -58,7 +68,9 @@
 <li>We don't use cookies, trackers or adverts. See our <a href="../privacy/">privacy page</a>.</li>
 </ul>
 <div class="callout info"><p>If your situation is unusual — several businesses, large losses, overseas income, partnerships or capital gains — check GOV.UK or talk to a qualified accountant.</p></div>
-<section class="signup" data-signup aria-labelledby="signup-h">
+<section class="signup reveal" data-signup aria-labelledby="signup-h">
+<div class="signup-art" aria-hidden="true"><svg viewBox="0 0 160 120" focusable="false"><rect x="18" y="28" width="124" height="80" rx="12" class="ea-back"/><path d="M18 40l62 40 62-40" class="ea-flap"/><rect x="42" y="10" width="76" height="58" rx="8" class="ea-card"/><path d="M54 26h36M54 36h52M54 46h28" class="ea-line"/><circle cx="122" cy="24" r="14" class="ea-badge"/><path d="M116 24.5l4 4 7.5-8" class="ea-tick"/></svg></div>
+<div class="signup-body">
 <h2 id="signup-h">Free UK tax deadline reminders</h2>
 <p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam.</p>
 <form action="https://assets.mailerlite.com/jsonp/2747334/forms/202498295451354728/subscribe" method="post" target="_blank">
@@ -66,7 +78,7 @@
 <div class="visually-hidden" aria-hidden="true"><label for="signup-website">Leave this field empty</label><input type="text" id="signup-website" data-hp tabindex="-1" autocomplete="off"></div>
 <input type="hidden" name="ml-submit" value="1">
 <input type="hidden" name="anticsrf" value="true">
-<button class="btn btn-teal" type="submit">Send me reminders</button>
+<button class="btn btn-amber" type="submit">Send me reminders<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></button>
 </form>
 <p class="small" id="signup-consent">Free UK tax deadline reminders and new tools from TaxReadySheets. Unsubscribe any time. See our <a href="../privacy/">Privacy page</a>.</p>
 <p data-signup-status role="status" aria-live="polite"></p>
@@ -74,21 +86,23 @@
 <a class="btn btn-teal" href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">See our tax-ready spreadsheets on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a>
 <p class="small">Email reminders are launching soon. Until then, our spreadsheets have the 2026/27 deadlines built in.</p>
 </div>
+</div>
 </section>
 </div></div>
 </main>
 <footer class="site-footer">
 <div class="wrap">
-<div class="cols">
-<div>
-<h2>TaxReadySheets</h2>
+<div class="footer-top">
+<div class="footer-brand">
+<a class="brand" href="../"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#F2A541"/><rect x="14" y="12" width="36" height="40" rx="5" fill="#fffaf2"/><path d="M20 22h24M20 30h24M20 38h12" stroke="#0F5257" stroke-width="3.5" stroke-linecap="round"/><circle cx="43" cy="42" r="8" fill="#0F5257"/><path d="M39.5 42.2l2.4 2.4 4.3-4.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TaxReady<span class="brand-accent">Sheets</span></span></a>
 <p>Free UK tax calculators for the self-employed. Simple, private tools that run in your browser — nothing you type is stored or sent anywhere.</p>
 <p>Estimates only, not tax advice. Check <a href="https://www.gov.uk/browse/tax" rel="noopener">GOV.UK</a> or an accountant before you act.</p>
+<ul class="footer-badges"><li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>Checked for 2026/27</li><li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>No cookies, no tracking</li></ul>
 </div>
 <div>
 <h2>Popular calculators</h2>
 <ul>
-<li><a href="../calculators/self-employed-tax-calculator/">Self-employed tax & take-home calculator</a></li>
+<li><a href="../calculators/self-employed-tax-calculator/">Self-employed tax &amp; take-home calculator</a></li>
 <li><a href="../calculators/cis-tax-refund-calculator/">CIS tax refund estimator</a></li>
 <li><a href="../calculators/landlord-tax-calculator/">Landlord rental profit tax calculator</a></li>
 <li><a href="../calculators/making-tax-digital-checker/">Making Tax Digital checker</a></li>
@@ -97,9 +111,17 @@
 </ul>
 </div>
 <div>
+<h2>Guides</h2>
+<ul>
+<li><a href="../guides/self-assessment-deadlines-2026-27/">Self Assessment deadlines for 2026/27</a></li>
+<li><a href="../guides/trading-allowance-vs-expenses/">Trading allowance vs expenses: which should you use?</a></li>
+<li><a href="../guides/making-tax-digital-income-tax-explained/">Making Tax Digital for Income Tax explained</a></li>
+<li><a href="../guides/">All guides</a></li>
+</ul>
+</div>
+<div>
 <h2>More</h2>
 <ul>
-<li><a href="../guides/">Guides</a></li>
 <li><a href="../about/">About</a></li>
 <li><a href="../privacy/">Privacy</a></li>
 <li><a href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">Spreadsheets on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a></li>

@@ -1,4 +1,4 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
 import { childminderTax } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
@@ -35,4 +35,10 @@ bindForm('calc', (v) => {
     setAside: gbp(r.monthlySetAside),
     note
   });
+  chart([
+    { label: r.method === 'allowance' ? 'Trading allowance' : 'Expenses & home costs', value: r.turnover - r.profit, tone: 1 },
+    { label: 'Income tax', value: r.incomeTax, tone: 2 },
+    { label: 'Class 4 NI', value: r.class4, tone: 3 },
+    { label: 'Take-home', value: r.takeHome, tone: 4 }
+  ], { value: gbp(r.turnover, { whole: true }), label: 'income' });
 });

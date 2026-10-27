@@ -1,5 +1,5 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
-import { driverComparison } from '../calc.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
+import { driverComparison, clean } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
 const rateText = (vehicle) => {
@@ -46,4 +46,11 @@ bindForm('calc', (v) => {
     setAside: gbp(best.monthlySetAside),
     note
   });
+  chart([
+    { label: 'Platform fees & other costs', value: clean(v.platformFees) + clean(v.otherExpenses), tone: 1 },
+    { label: 'Vehicle costs', value: clean(v.vehicleCosts), tone: 5 },
+    { label: 'Income tax', value: best.incomeTax, tone: 2 },
+    { label: 'Class 4 NI', value: best.class4, tone: 3 },
+    { label: 'Cash left', value: best.cashTakeHome, tone: 4 }
+  ], { value: gbp(clean(v.fares), { whole: true }), label: 'fares' });
 });

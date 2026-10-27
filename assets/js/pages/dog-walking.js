@@ -1,4 +1,4 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
 import { petCarePrice } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
@@ -48,4 +48,11 @@ bindForm('calc', (v) => {
         ? `Each of the ${r.pets} owners pays ${gbp(r.pricePerPet)}. Doing the same ${w.unit} for one animal alone would need ${gbp(Math.ceil(r.price * 2) / 2)}.`
         : `This is the price for one animal. Adding more to the same ${w.unit} lowers each owner's share while raising your hourly earnings.`
   });
+  chart([
+    { label: 'Your time', value: r.labour, tone: 4 },
+    { label: 'Travel', value: r.travel, tone: 5 },
+    { label: 'Extras', value: r.direct, tone: 1 },
+    { label: 'Business costs', value: r.overhead, tone: 6 },
+    { label: 'Profit margin', value: r.margin, tone: 2 }
+  ], { value: gbp(r.price), label: `per ${w.unit}` });
 });

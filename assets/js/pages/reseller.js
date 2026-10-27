@@ -1,5 +1,5 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
-import { resellerCheck, selfEmployedTax } from '../calc.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
+import { resellerCheck, selfEmployedTax, clean } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
 const SIGNS = ['signBuy', 'signMake', 'signRegular', 'signProfit', 'signShop'];
@@ -31,4 +31,11 @@ bindForm('calc', (v) => {
     tax: gbp(tax),
     verdict
   });
+  const sales = clean(v.sales);
+  const spent = Math.min(clean(v.costs), sales);
+  chart([
+    { label: 'Stock, fees & postage', value: spent, tone: 1 },
+    { label: 'Tax & NI', value: tax, tone: 2 },
+    { label: 'Yours to keep', value: sales - spent - tax, tone: 4 }
+  ], { value: gbp(sales, { whole: true }), label: 'sales' });
 });

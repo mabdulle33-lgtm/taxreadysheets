@@ -1,5 +1,5 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
-import { landlordTax } from '../calc.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
+import { landlordTax, clean } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
 bindForm('calc', (v) => {
@@ -29,4 +29,10 @@ bindForm('calc', (v) => {
       : 'Uses your actual running costs, with mortgage interest relieved through the tax credit.',
     mtdNote
   });
+  chart([
+    { label: 'Running costs', value: Math.min(clean(v.expenses), r.rent), tone: 1 },
+    { label: 'Mortgage interest', value: clean(v.finance), tone: 5 },
+    { label: 'Tax on rent', value: a.propertyTax, tone: 2 },
+    { label: 'Left for you', value: a.afterTax, tone: 4 }
+  ], { value: gbp(r.rent, { whole: true }), label: 'rent' });
 });

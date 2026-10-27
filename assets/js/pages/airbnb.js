@@ -1,5 +1,5 @@
-import { bindForm, setOuts, gbp } from '../ui.js';
-import { rentalReliefComparison } from '../calc.js';
+import { bindForm, setOuts, gbp, chart } from '../ui.js';
+import { rentalReliefComparison, clean } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
 bindForm('calc', (v) => {
@@ -22,4 +22,10 @@ bindForm('calc', (v) => {
   else outs.verdict = r.saving > 0 ? `Using ${phrase} saves you ${gbp(r.saving)} compared with the most expensive option.` : 'All available options give the same result.';
   outs.keep = r.income > 0 ? `You keep about ${gbp(r.keep)} after your actual expenses and tax.` : '';
   setOuts(outs);
+  const spent = Math.min(clean(v.expenses), r.income);
+  chart([
+    { label: 'Expenses', value: spent, tone: 1 },
+    { label: 'Tax (best option)', value: r.bestTax, tone: 2 },
+    { label: 'Yours to keep', value: r.income - spent - r.bestTax, tone: 4 }
+  ], { value: gbp(r.income, { whole: true }), label: 'letting income' });
 });

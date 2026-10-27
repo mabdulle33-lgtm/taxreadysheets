@@ -3,6 +3,9 @@
  * Nothing here talks to the network.
  */
 
+import { restoreFromQuery, enhanceCalculator } from './calc-tools.js';
+import { renderChart } from './chart.js';
+
 const gbpFmt = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' });
 const gbpWhole = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0, minimumFractionDigits: 0 });
 
@@ -42,10 +45,14 @@ export function readForm(form) {
 /**
  * Wire a calculator form: recalculate on every keystroke/change and once on load.
  * update(values, form) should write the results.
+ * The main calculator (id="calc") also picks up figures from a shared link and
+ * gets its sliders, inline help and Copy / Share / Print / Reset buttons.
  */
 export function bindForm(formId, update) {
   const form = document.getElementById(formId);
   if (!form) return;
+  const main = formId === 'calc';
+  const restored = main ? restoreFromQuery(form) : false;
   const run = () => {
     try { update(readForm(form), form); } catch (err) { console.error(err); }
   };
@@ -53,6 +60,16 @@ export function bindForm(formId, update) {
   form.addEventListener('change', run);
   form.addEventListener('submit', (e) => { e.preventDefault(); run(); });
   run();
+  enhanceCalculator(form, run, { restored, actions: main });
+}
+
+/**
+ * Draw the "where the money goes" chart into [data-chart] (if the page has one).
+ * parts: [{ label, value }]; centre: { label, value } shown in the middle.
+ */
+export function chart(parts, centre) {
+  const el = document.querySelector('[data-chart]');
+  renderChart(el, parts, { format: (v) => gbp(v, { whole: v >= 1000 }), centre });
 }
 
 /** Set the text of every [data-out="key"] element. */

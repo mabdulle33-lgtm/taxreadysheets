@@ -146,13 +146,28 @@ test('sitemap lists every indexable page with the base URL; robots points at it'
   assert.match(robots, new RegExp(`Sitemap: ${SITE.baseUrl.replace(/[.]/g, '\\.')}sitemap\\.xml`));
 });
 
-test('no cookies, storage or tracking in site scripts', () => {
+test('no cookies or tracking in site scripts; storage only for the light/dark choice', () => {
   const dir = join(ROOT, 'assets/js');
   const files = [...readdirSync(dir).map((f) => join(dir, f)), ...readdirSync(join(dir, 'pages')).map((f) => join(dir, 'pages', f))].filter((f) => f.endsWith('.js'));
+  const THEME_FILES = new Set(['theme-init.js', 'site.js']);
   for (const f of files) {
     const src = readFileSync(f, 'utf8');
-    assert.doesNotMatch(src, /document\.cookie|localStorage|sessionStorage|navigator\.sendBeacon/, f);
+    assert.doesNotMatch(src, /document\.cookie|sessionStorage|navigator\.sendBeacon|indexedDB/, f);
+    const name = f.split(sep).pop();
+    const uses = [...src.matchAll(/localStorage\.(\w+)\(([^)]*)\)/g)];
+    if (!THEME_FILES.has(name)) {
+      assert.doesNotMatch(src, /localStorage/, `${f}: only the theme scripts may use storage`);
+      continue;
+    }
+    for (const m of uses) {
+      assert.ok(['getItem', 'setItem'].includes(m[1]), `${f}: localStorage.${m[1]}`);
+      assert.match(m[2], /^('trs-theme'|THEME_KEY)(,|$)/, `${f}: storage key must be the theme key`);
+      // every storage call sits inside a try block, so blocked storage can't break the page
+      const before = src.slice(0, m.index).split('\n').slice(-3).join('\n');
+      assert.match(before, /try\s*\{/, `${f}: storage call not wrapped in try`);
+    }
   }
+  assert.match(readFileSync(join(dir, 'site.js'), 'utf8'), /const THEME_KEY = 'trs-theme';/);
 });
 
 test('page scripts never hard-code tax rates', () => {

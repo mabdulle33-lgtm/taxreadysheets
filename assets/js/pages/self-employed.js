@@ -1,4 +1,4 @@
-import { bindForm, setOuts, show, gbp, percent } from '../ui.js';
+import { bindForm, setOuts, show, gbp, percent, chart } from '../ui.js';
 import { selfEmployedTax } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
@@ -34,5 +34,11 @@ bindForm('calc', (v) => {
       ? 'Class 2 NI: nothing to pay — with profits over £7,105 you are treated as having paid, so this year counts towards your State Pension.'
       : `Class 2 NI: profits are under £7,105, so this year will not count towards your State Pension unless you pay voluntarily (about ${gbp(r.class2.voluntaryAnnual)} a year).`
   });
+  chart([
+    { label: r.method === 'allowance' ? 'Trading allowance' : 'Expenses', value: r.turnover - r.profit, tone: 1 },
+    { label: 'Income tax', value: r.incomeTax, tone: 2 },
+    { label: 'Class 4 NI', value: r.class4, tone: 3 },
+    { label: 'Take-home', value: r.takeHome, tone: 4 }
+  ], { value: gbp(r.turnover, { whole: true }), label: 'income' });
   show('poa', poa.applies);
 });

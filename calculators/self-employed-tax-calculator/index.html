@@ -19,6 +19,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0F5257">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<script src="../../assets/js/theme-init.js"></script>
+<link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/style.css">
 <script type="module" src="../../assets/js/site.js"></script>
 <script type="module" src="../../assets/js/pages/self-employed.js"></script>
@@ -29,32 +31,40 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
-<div class="wrap">
-<a class="brand" href="../../"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#F2A541"/><rect x="14" y="12" width="36" height="40" rx="4" fill="#faf8f4"/><path d="M20 22h24M20 30h24M20 38h12" stroke="#0F5257" stroke-width="3.5" stroke-linecap="round"/></svg><span>TaxReadySheets</span></a>
-<nav class="site-nav" aria-label="Main">
+<div class="wrap header-inner">
+<a class="brand" href="../../"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#F2A541"/><rect x="14" y="12" width="36" height="40" rx="5" fill="#fffaf2"/><path d="M20 22h24M20 30h24M20 38h12" stroke="#0F5257" stroke-width="3.5" stroke-linecap="round"/><circle cx="43" cy="42" r="8" fill="#0F5257"/><path d="M39.5 42.2l2.4 2.4 4.3-4.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TaxReady<span class="brand-accent">Sheets</span></span></a>
+<nav class="site-nav" id="site-nav" aria-label="Main">
 <ul>
 <li><a href="../../calculators/" aria-current="page">Calculators</a></li>
 <li><a href="../../guides/">Guides</a></li>
 <li><a href="../../about/">About</a></li>
-<li><a href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">Etsy shop<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+<li class="nav-cta"><a class="btn btn-amber btn-sm" href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">Etsy shop<span class="visually-hidden"> (opens in a new tab)</span></a></li>
 </ul>
 </nav>
+<div class="header-tools">
+<button type="button" class="icon-btn theme-toggle" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false"><svg class="icon i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="icon i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></button>
+<button type="button" class="icon-btn nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><svg class="icon i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="icon i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
 </div>
 </header>
 <main id="main">
+<div class="page-hero">
 <div class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../">Home</a></li><li><a href="../../calculators/">Calculators</a></li><li aria-current="page">Self-employed tax & take-home calculator</li></ol></nav>
-<h1>Self-employed tax calculator for 2026/27: income tax, NI and take-home pay</h1>
+<div class="page-title"><span class="title-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></svg></span><h1>Self-employed tax calculator for 2026/27: income tax, NI and take-home pay</h1></div>
 <p class="lead">Type in what your business brought in and what it cost to run. You will see the income tax and National Insurance on your profit, what you actually keep, and a monthly figure to move into a tax pot so January holds no surprises.</p>
-<p class="checked-note"><span aria-hidden="true">✓</span><span><strong>Checked for 2026/27</strong> — uses the rates for 6 April 2026 to 5 April 2027, last reviewed 27 October 2026.</span></p>
+<p class="checked-note"><span class="checked-icon" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg></span><span><strong>Checked for 2026/27</strong> — uses the rates for 6 April 2026 to 5 April 2027, last reviewed 27 October 2026.</span></p>
+</div>
+</div>
+<div class="wrap">
 <div class="calc-layout">
 <form class="calc" id="calc" novalidate aria-labelledby="calc-h">
 <h2 id="calc-h">Your figures</h2>
 
-<div class="field"><label for="turnover">Self-employed income (turnover)</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="turnover" name="turnover" type="number" inputmode="decimal" min="0" step="any" value="32000" aria-describedby="turnover-hint"></div><p class="hint" id="turnover-hint">Everything you invoiced or took in the tax year, before any costs.</p></div>
-<div class="field"><label for="expenses">Allowable business expenses</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="expenses" name="expenses" type="number" inputmode="decimal" min="0" step="any" value="2000" aria-describedby="expenses-hint"></div><p class="hint" id="expenses-hint">Supplies, phone, insurance, software, business travel and similar.</p></div>
+<div class="field"><label for="turnover">Self-employed income (turnover)</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="turnover" name="turnover" type="number" data-range="0 150000 500" inputmode="decimal" min="0" step="any" value="32000" aria-describedby="turnover-hint"></div><p class="hint" id="turnover-hint">Everything you invoiced or took in the tax year, before any costs.</p></div>
+<div class="field"><div class="label-row"><label for="expenses">Allowable business expenses</label><button type="button" class="tip" aria-expanded="false" aria-controls="tip-expenses" aria-label="What is Allowable business expenses?"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg></button></div><p class="tip-pop" id="tip-expenses">Allowable expenses are costs that are wholly for the business — stock, tools, insurance, software, a business phone, business travel. Personal spending, everyday clothing and fines don't count.</p><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="expenses" name="expenses" type="number" data-range="0 50000 100" inputmode="decimal" min="0" step="any" value="2000" aria-describedby="expenses-hint"></div><p class="hint" id="expenses-hint">Supplies, phone, insurance, software, business travel and similar.</p></div>
 <fieldset class="field"><legend>Expenses or the £1,000 trading allowance?</legend><div class="radios"><label><input type="radio" name="deduction" id="deduction-0" value="auto" checked> <span>Pick whichever saves me more (recommended)</span></label><label><input type="radio" name="deduction" id="deduction-1" value="expenses"> <span>Use my actual expenses</span></label><label><input type="radio" name="deduction" id="deduction-2" value="allowance"> <span>Use the £1,000 trading allowance</span></label></div></fieldset>
-<div class="field"><label for="employment">Income from a job (optional)</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="employment" name="employment" type="number" inputmode="decimal" min="0" step="any" value="" aria-describedby="employment-hint"></div><p class="hint" id="employment-hint">Salary or pension taxed through PAYE. Used to work out your tax band; its tax is assumed already paid.</p></div>
+<div class="field"><label for="employment">Income from a job (optional)</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="employment" name="employment" type="number" data-range="0 150000 500" inputmode="decimal" min="0" step="any" value="" aria-describedby="employment-hint"></div><p class="hint" id="employment-hint">Salary or pension taxed through PAYE. Used to work out your tax band; its tax is assumed already paid.</p></div>
 <div class="check"><input type="checkbox" id="scotland" name="scotland" aria-describedby="scotland-hint"><div><label for="scotland">I pay Scottish income tax</label><p class="hint" id="scotland-hint">Tick if you live in Scotland. Class 4 NI is the same across the UK.</p></div></div>
 </form>
 <section class="results" id="results" aria-labelledby="results-h">
@@ -62,27 +72,62 @@
 
 <div aria-live="polite" aria-atomic="true"><p class="big-label">Put aside each month</p><p class="big-number" data-out="setAside">£0</p></div>
 <dl class="result-list">
-<div><dt>Taxable profit</dt><dd data-out="profit">£0.00</dd></div>
-<div><dt>Income tax on your profit</dt><dd data-out="incomeTax">£0.00</dd></div>
-<div><dt>Class 4 National Insurance</dt><dd data-out="class4">£0.00</dd></div>
+<div class="has-tip"><dt>Taxable profit<button type="button" class="tip" aria-expanded="false" aria-controls="tip-r1" aria-label="What is Taxable profit?"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg></button><span class="tip-pop" id="tip-r1">Income minus allowable expenses (or minus the £1,000 trading allowance if that is bigger). Income tax and Class 4 NI are worked out on this figure.</span></dt><dd data-out="profit">£0.00</dd></div>
+<div class="has-tip"><dt>Income tax on your profit<button type="button" class="tip" aria-expanded="false" aria-controls="tip-r2" aria-label="What is Income tax on your profit?"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg></button><span class="tip-pop" id="tip-r2">Only the extra income tax caused by your self-employed profit. Tax on any job is assumed to be taken through PAYE.</span></dt><dd data-out="incomeTax">£0.00</dd></div>
+<div class="has-tip"><dt>Class 4 National Insurance<button type="button" class="tip" aria-expanded="false" aria-controls="tip-r3" aria-label="What is Class 4 National Insurance?"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg></button><span class="tip-pop" id="tip-r3">Paid through Self Assessment on self-employed profits: 6% on profits between £12,570 and £50,270, then 2% above that.</span></dt><dd data-out="class4">£0.00</dd></div>
 <div class="total"><dt>Total tax bill</dt><dd data-out="total">£0.00</dd></div>
 <div><dt>Take-home after tax</dt><dd data-out="takeHome">£0.00</dd></div>
-<div><dt>Effective rate on profit</dt><dd data-out="effective">£0.00</dd></div>
+<div class="has-tip"><dt>Effective rate on profit<button type="button" class="tip" aria-expanded="false" aria-controls="tip-r4" aria-label="What is Effective rate on profit?"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg></button><span class="tip-pop" id="tip-r4">Your total income tax and National Insurance as a share of your taxable profit.</span></dt><dd data-out="effective">£0.00</dd></div>
 </dl>
 <p class="callout info" data-out="methodNote"></p>
 <div class="callout" data-show="poa"><p><strong>Payments on account:</strong> <span data-out="poaNote"></span></p></div>
 <p class="hint" data-out="class2Note"></p>
+<div class="calc-actions js-only" data-calc-actions>
+<button type="button" class="action" data-action="copy"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5v-3a2 2 0 0 0-2-2h-8a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h3"/></svg><span>Copy results</span></button>
+<button type="button" class="action" data-action="share"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L12 5.6"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"/></svg><span>Share link</span></button>
+<button type="button" class="action" data-action="print"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 9V3.5h10V9"/><rect x="3.5" y="9" width="17" height="8" rx="2"/><path d="M7 14h10v6.5H7z"/></svg><span>Print / PDF</span></button>
+<button type="button" class="action" data-action="reset"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg><span>Reset</span></button>
+</div>
+<p class="action-status" data-action-status role="status" aria-live="polite"></p>
+</section>
+<section class="chart-card js-only" aria-labelledby="chart-h">
+<h2 id="chart-h">Where your income goes</h2>
+<div class="chart" data-chart></div>
 </section>
 </div>
-<p class="privacy-note">Results update as you type. No sign-up, and nothing you enter leaves your device.</p>
-<aside class="product" data-product="bookkeeping" aria-labelledby="product-h">
-<div>
-<p class="eyebrow">Ready-made spreadsheet</p>
+<p class="privacy-note"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg><span>Results update as you type. No sign-up, and nothing you enter leaves your device.</span></p>
+<aside class="product reveal" data-product="bookkeeping" aria-labelledby="product-h">
+<div class="product-media"><svg class="sheet-preview" viewBox="0 0 240 150" focusable="false" aria-hidden="true">
+<rect x="1" y="1" width="238" height="148" rx="12" class="sp-bg"/>
+<path d="M1 13a12 12 0 0 1 12-12h214a12 12 0 0 1 12 12v13H1z" class="sp-top"/>
+<circle cx="14" cy="13.5" r="3" class="sp-dot"/><circle cx="24" cy="13.5" r="3" class="sp-dot"/><circle cx="34" cy="13.5" r="3" class="sp-dot"/>
+<rect x="12" y="34" width="144" height="12" rx="3" class="sp-head"/>
+<rect x="12" y="52" width="44" height="8" rx="2" class="sp-cell"/><rect x="62" y="52" width="40" height="8" rx="2" class="sp-cell"/><rect x="112" y="52" width="44" height="8" rx="2" class="sp-cell sp-num"/><rect x="12" y="66" width="44" height="8" rx="2" class="sp-cell"/><rect x="62" y="66" width="32" height="8" rx="2" class="sp-cell"/><rect x="112" y="66" width="44" height="8" rx="2" class="sp-cell sp-num"/><rect x="12" y="80" width="44" height="8" rx="2" class="sp-cell"/><rect x="62" y="80" width="24" height="8" rx="2" class="sp-cell"/><rect x="112" y="80" width="44" height="8" rx="2" class="sp-cell sp-num"/><rect x="12" y="94" width="44" height="8" rx="2" class="sp-cell"/><rect x="62" y="94" width="40" height="8" rx="2" class="sp-cell"/><rect x="112" y="94" width="44" height="8" rx="2" class="sp-cell sp-num"/>
+<rect x="12" y="110" width="144" height="12" rx="3" class="sp-total"/>
+<path d="M164 118h66" class="sp-axis"/><rect x="170" y="96" width="9" height="22" rx="2" class="sp-bar"/><rect x="184" y="84" width="9" height="34" rx="2" class="sp-bar"/><rect x="198" y="90" width="9" height="28" rx="2" class="sp-bar"/><rect x="212" y="74" width="9" height="44" rx="2" class="sp-bar sp-bar-hi"/>
+<rect x="164" y="34" width="66" height="30" rx="6" class="sp-chip"/><rect x="171" y="41" width="30" height="6" rx="2" class="sp-chip-line"/><rect x="171" y="51" width="44" height="7" rx="2" class="sp-chip-num"/>
+<rect x="12" y="130" width="60" height="8" rx="2" class="sp-cell"/>
+</svg><span class="product-badge" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12.5h18M10.5 12.5v2h3v-2"/></svg></span></div>
+<div class="product-body">
+<p class="eyebrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9h17M3.5 14.5h17M9.5 9v11"/></svg>Ready-made spreadsheet</p>
 <h2 id="product-h" data-product-title>Sole Trader Bookkeeping Spreadsheet</h2>
 <p data-product-blurb>Log income and expenses as you go and see your profit, tax estimate and set-aside figure update automatically — ready for Self Assessment and Making Tax Digital record-keeping.</p>
+<div class="product-actions"><a class="btn btn-amber" data-product-link href="https://www.etsy.com/listing/4595071195" target="_blank" rel="noopener">View on Etsy<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V7.5A1.5 1.5 0 0 1 5.5 6H10"/></svg><span class="visually-hidden"> (opens in a new tab)</span></a><span class="product-note">Made by TaxReadySheets · opens our Etsy shop</span></div>
 </div>
-<a class="btn btn-amber" data-product-link href="https://www.etsy.com/listing/4595071195" target="_blank" rel="noopener">View on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a>
 </aside>
+<div class="with-aside">
+<div class="toc-aside toc-wide-only">
+<nav class="toc" aria-labelledby="toc-h">
+<p class="toc-title" id="toc-h"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>On this page</p>
+<ol>
+<li><a href="#calc-h">Your figures</a></li>
+<li><a href="#example-h">Worked example</a></li>
+<li><a href="#explained-h">How it works</a></li>
+<li><a href="#faq-h">FAQs</a></li>
+<li><a href="#related-h">More calculators</a></li>
+</ol>
+</nav>
+</div>
 <div class="content">
 <section id="example" aria-labelledby="example-h"><h2 id="example-h">Worked example</h2>
 <div class="example">
@@ -121,15 +166,17 @@
 <details><summary>When do I pay the tax for 2026/27?</summary><div><p>The balance is due by 31 January 2028, the same day the online return is due. If you have payments on account, they fall on 31 January 2027 and 31 July 2027 for the 2026/27 year. See our <a href="../../guides/self-assessment-deadlines-2026-27/">Self Assessment deadlines guide</a> for the full list.</p></div></details>
 </section>
 <p class="disclaimer"><strong>Estimates only, not tax advice.</strong> These figures are a guide based on the information you enter and the 2026/27 rules. Your own position can differ — check <a href="https://www.gov.uk/browse/tax" rel="noopener">GOV.UK</a> or an accountant before relying on them.</p>
-<section class="related" aria-labelledby="related-h"><h2 id="related-h">More free calculators</h2><ul>
-<li><a href="../../calculators/making-tax-digital-checker/">Making Tax Digital checker</a></li>
-<li><a href="../../calculators/mileage-claim-calculator/">HMRC mileage claim calculator</a></li>
-<li><a href="../../calculators/cis-tax-refund-calculator/">CIS tax refund estimator</a></li>
-<li><a href="../../calculators/childminder-tax-calculator/">Childminder take-home calculator</a></li>
-<li><a href="../../guides/trading-allowance-vs-expenses/">Trading allowance vs expenses: which should you use?</a></li>
-<li><a href="../../guides/self-assessment-deadlines-2026-27/">Self Assessment deadlines for 2026/27</a></li>
+<section class="related" aria-labelledby="related-h"><h2 id="related-h">More free calculators</h2><ul class="related-grid">
+<li><a class="related-card" href="../../calculators/making-tax-digital-checker/"><span class="related-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="4.5" width="16" height="11" rx="1.5"/><path d="M2.5 19.5h19M12 12.5V7.5M9.5 10L12 7.5l2.5 2.5"/></svg></span><span class="related-text"><span class="related-kind">Calculator</span>Making Tax Digital checker</span><svg class="icon related-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a class="related-card" href="../../calculators/mileage-claim-calculator/"><span class="related-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.8"/></svg></span><span class="related-text"><span class="related-kind">Calculator</span>HMRC mileage claim calculator</span><svg class="icon related-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a class="related-card" href="../../calculators/cis-tax-refund-calculator/"><span class="related-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 16a7 7 0 0 1 14 0"/><path d="M10 9.5V6.5h4v3"/><rect x="3" y="16" width="18" height="3.5" rx="1.2"/></svg></span><span class="related-text"><span class="related-kind">Calculator</span>CIS tax refund estimator</span><svg class="icon related-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a class="related-card" href="../../calculators/childminder-tax-calculator/"><span class="related-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="13" width="7.5" height="7.5" rx="1.2"/><rect x="13" y="13" width="7.5" height="7.5" rx="1.2"/><rect x="8.2" y="3.5" width="7.5" height="7.5" rx="1.2"/><path d="M6.2 16.8h2M11.9 7.2v.1M16.7 15.5v2.5"/></svg></span><span class="related-text"><span class="related-kind">Calculator</span>Childminder take-home calculator</span><svg class="icon related-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a class="related-card" href="../../guides/trading-allowance-vs-expenses/"><span class="related-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 18.5V5.5a2 2 0 0 1 2-2h13v14H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13v-4"/><path d="M8.5 8h6"/></svg></span><span class="related-text"><span class="related-kind">Guide</span>Trading allowance vs expenses: which should you use?</span><svg class="icon related-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a class="related-card" href="../../guides/self-assessment-deadlines-2026-27/"><span class="related-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 18.5V5.5a2 2 0 0 1 2-2h13v14H6a2 2 0 0 0-2 2 2 2 0 0 0 2 2h13v-4"/><path d="M8.5 8h6"/></svg></span><span class="related-text"><span class="related-kind">Guide</span>Self Assessment deadlines for 2026/27</span><svg class="icon related-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
 </ul></section>
-<section class="signup" data-signup aria-labelledby="signup-h">
+<section class="signup reveal" data-signup aria-labelledby="signup-h">
+<div class="signup-art" aria-hidden="true"><svg viewBox="0 0 160 120" focusable="false"><rect x="18" y="28" width="124" height="80" rx="12" class="ea-back"/><path d="M18 40l62 40 62-40" class="ea-flap"/><rect x="42" y="10" width="76" height="58" rx="8" class="ea-card"/><path d="M54 26h36M54 36h52M54 46h28" class="ea-line"/><circle cx="122" cy="24" r="14" class="ea-badge"/><path d="M116 24.5l4 4 7.5-8" class="ea-tick"/></svg></div>
+<div class="signup-body">
 <h2 id="signup-h">Free UK tax deadline reminders</h2>
 <p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam.</p>
 <form action="https://assets.mailerlite.com/jsonp/2747334/forms/202498295451354728/subscribe" method="post" target="_blank">
@@ -137,7 +184,7 @@
 <div class="visually-hidden" aria-hidden="true"><label for="signup-website">Leave this field empty</label><input type="text" id="signup-website" data-hp tabindex="-1" autocomplete="off"></div>
 <input type="hidden" name="ml-submit" value="1">
 <input type="hidden" name="anticsrf" value="true">
-<button class="btn btn-teal" type="submit">Send me reminders</button>
+<button class="btn btn-amber" type="submit">Send me reminders<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></button>
 </form>
 <p class="small" id="signup-consent">Free UK tax deadline reminders and new tools from TaxReadySheets. Unsubscribe any time. See our <a href="../../privacy/">Privacy page</a>.</p>
 <p data-signup-status role="status" aria-live="polite"></p>
@@ -145,22 +192,25 @@
 <a class="btn btn-teal" href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">See our tax-ready spreadsheets on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a>
 <p class="small">Email reminders are launching soon. Until then, our spreadsheets have the 2026/27 deadlines built in.</p>
 </div>
+</div>
 </section>
+</div>
 </div>
 </div>
 </main>
 <footer class="site-footer">
 <div class="wrap">
-<div class="cols">
-<div>
-<h2>TaxReadySheets</h2>
+<div class="footer-top">
+<div class="footer-brand">
+<a class="brand" href="../../"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#F2A541"/><rect x="14" y="12" width="36" height="40" rx="5" fill="#fffaf2"/><path d="M20 22h24M20 30h24M20 38h12" stroke="#0F5257" stroke-width="3.5" stroke-linecap="round"/><circle cx="43" cy="42" r="8" fill="#0F5257"/><path d="M39.5 42.2l2.4 2.4 4.3-4.6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>TaxReady<span class="brand-accent">Sheets</span></span></a>
 <p>Free UK tax calculators for the self-employed. Simple, private tools that run in your browser — nothing you type is stored or sent anywhere.</p>
 <p>Estimates only, not tax advice. Check <a href="https://www.gov.uk/browse/tax" rel="noopener">GOV.UK</a> or an accountant before you act.</p>
+<ul class="footer-badges"><li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>Checked for 2026/27</li><li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>No cookies, no tracking</li></ul>
 </div>
 <div>
 <h2>Popular calculators</h2>
 <ul>
-<li><a href="../../calculators/self-employed-tax-calculator/">Self-employed tax & take-home calculator</a></li>
+<li><a href="../../calculators/self-employed-tax-calculator/">Self-employed tax &amp; take-home calculator</a></li>
 <li><a href="../../calculators/cis-tax-refund-calculator/">CIS tax refund estimator</a></li>
 <li><a href="../../calculators/landlord-tax-calculator/">Landlord rental profit tax calculator</a></li>
 <li><a href="../../calculators/making-tax-digital-checker/">Making Tax Digital checker</a></li>
@@ -169,9 +219,17 @@
 </ul>
 </div>
 <div>
+<h2>Guides</h2>
+<ul>
+<li><a href="../../guides/self-assessment-deadlines-2026-27/">Self Assessment deadlines for 2026/27</a></li>
+<li><a href="../../guides/trading-allowance-vs-expenses/">Trading allowance vs expenses: which should you use?</a></li>
+<li><a href="../../guides/making-tax-digital-income-tax-explained/">Making Tax Digital for Income Tax explained</a></li>
+<li><a href="../../guides/">All guides</a></li>
+</ul>
+</div>
+<div>
 <h2>More</h2>
 <ul>
-<li><a href="../../guides/">Guides</a></li>
 <li><a href="../../about/">About</a></li>
 <li><a href="../../privacy/">Privacy</a></li>
 <li><a href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">Spreadsheets on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a></li>

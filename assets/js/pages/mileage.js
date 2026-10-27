@@ -1,4 +1,4 @@
-import { bindForm, setOuts, show, gbp } from '../ui.js';
+import { bindForm, setOuts, show, gbp, chart } from '../ui.js';
 import { mileageClaim } from '../calc.js';
 import { RATES } from '../rates-2026-27.js';
 
@@ -33,4 +33,9 @@ bindForm('calc', (v) => {
     savingHigher: gbp(r.savingHigher),
     note
   });
+  chart([
+    { label: 'Car or van', value: r.car, tone: 4 },
+    { label: 'Motorcycle', value: r.motorcycle, tone: 5 },
+    { label: 'Bicycle', value: r.bicycle, tone: 6 }
+  ], { value: gbp(r.total, { whole: true }), label: 'approved' });
 });
