@@ -17,12 +17,12 @@ bindForm('calc', (v) => {
   const todayIso = isoDate(new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())));
   body.innerHTML = periods.map((p) => {
     const current = p.start <= todayIso && todayIso <= p.end;
-    return `<tr${current ? ' class="current"' : ''}><td>${esc(niceDate(p.start, short))} to<br>${esc(niceDate(p.end, short))}${current ? ' <span class="visually-hidden">(current period)</span>' : ''}</td><td>${esc(niceDate(p.reportFrom, dm))}</td><td>${esc(niceDate(p.reportBy, dm))}</td><td>${esc(niceDate(p.paymentAround, dm))}</td></tr>`;
+    return `<tr${current ? ' class="current"' : ''}><td>${esc(niceDate(p.start, dm))} to<br>${esc(niceDate(p.end, short))}${current ? ' <span class="visually-hidden">(current period)</span>' : ''}</td><td>${esc(niceDate(p.reportFrom, dm))}</td><td>${esc(niceDate(p.reportBy, dm))}</td></tr>`;
   }).join('');
   const now = periods[0];
   const fallback = day >= 29 ? ` Because your period starts on day ${day}, in shorter months it starts on the last day of the month instead.` : '';
   setOuts({
     window: `${niceDate(now.reportFrom, short)} and ${niceDate(now.reportBy, short)}`,
-    note: `Your current period runs ${niceDate(now.start, short)} to ${niceDate(now.end, short)} (highlighted below).${fallback}`
+    note: `Your current period runs ${niceDate(now.start, short)} to ${niceDate(now.end, short)} (highlighted below). Payment usually arrives about 7 days after a period ends — around ${niceDate(now.paymentAround, short)} for this one.${fallback}`
   });
 });

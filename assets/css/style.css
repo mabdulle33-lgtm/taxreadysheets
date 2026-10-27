@@ -110,7 +110,7 @@ main { display: block; padding-bottom: 3rem; }
 .group-title { margin-top: 2.2rem; display: flex; align-items: center; gap: .5rem; }
 
 /* calculator layout */
-.calc-layout { display: grid; gap: 1.25rem; grid-template-columns: 1fr; align-items: start; margin-top: 1.25rem; }
+.calc-layout { display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 1fr); align-items: start; margin-top: 1.25rem; }
 @media (min-width: 56rem) { .calc-layout { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } .results { position: sticky; top: 1rem; } }
 .calc, .results {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
