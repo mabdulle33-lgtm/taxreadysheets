@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mabdulle33-lgtm.github.io/taxreadysheets/sitemap.xml
+Sitemap: https://taxreadysheets.co.uk/sitemap.xml

@@ -10,7 +10,7 @@ export const SITE = {
   // into each page's canonical/Open Graph tags, sitemap.xml and robots.txt
   // (search engines need it in plain HTML). To move the site, change it here
   // and run:  node tools/set-base-url.mjs
-  baseUrl: 'https://mabdulle33-lgtm.github.io/taxreadysheets/',
+  baseUrl: 'https://taxreadysheets.co.uk/',
 
   etsyShopUrl: 'https://www.etsy.com/shop/TaxReadySheets'
 };

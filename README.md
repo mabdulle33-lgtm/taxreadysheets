@@ -2,7 +2,7 @@
 
 **Free UK tax calculators for the self-employed** — a fast static website whose job is to win Google traffic and send visitors to the [TaxReadySheets Etsy shop](https://www.etsy.com/shop/TaxReadySheets).
 
-Live address: <https://mabdulle33-lgtm.github.io/taxreadysheets/>
+Live address: <https://taxreadysheets.co.uk/>
 
 - Plain HTML, CSS and vanilla JavaScript. No framework, no build step, no dependencies, no external scripts, fonts or CDNs.
 - No cookies, trackers, analytics or ads. Calculators run in the visitor's browser; nothing they type is sent anywhere.
@@ -128,8 +128,8 @@ Keep double opt-in switched on in MailerLite so the confirmation email does the 
 
 1. On GitHub open the repo → **Settings** → **Pages**.
 2. Under **Build and deployment** choose **Source: Deploy from a branch**, **Branch: `main`**, folder **`/ (root)`**, and **Save**.
-3. After a minute or two the site is live at <https://mabdulle33-lgtm.github.io/taxreadysheets/>.
-4. Add the site to [Google Search Console](https://search.google.com/search-console) as a URL-prefix property and submit `https://mabdulle33-lgtm.github.io/taxreadysheets/sitemap.xml`.
+3. After a minute or two the site is live at <https://taxreadysheets.co.uk/>.
+4. Add the site to [Google Search Console](https://search.google.com/search-console) as a URL-prefix property and submit `https://taxreadysheets.co.uk/sitemap.xml`.
 
 ### Moving to your own domain later
 
