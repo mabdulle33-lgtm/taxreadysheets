@@ -25,32 +25,48 @@ function fillProducts() {
   document.querySelectorAll('a[data-shop-link]').forEach((a) => { a.href = SITE.etsyShopUrl; });
 }
 
+const THANKS = 'Thanks! Check your inbox to confirm.';
+
 function setupSignups() {
   const action = (MAILERLITE_FORM_ACTION || '').trim();
-  if (!action) return; // static HTML already shows the Etsy shop button
   document.querySelectorAll('[data-signup]').forEach((block) => {
     const form = block.querySelector('form');
     const fallback = block.querySelector('[data-signup-fallback]');
     const status = block.querySelector('[data-signup-status]');
     if (!form) return;
+    // No MailerLite form configured: show the Etsy shop button instead.
+    if (!action) {
+      form.hidden = true;
+      if (fallback) fallback.hidden = false;
+      return;
+    }
     form.action = action;
     form.method = 'post';
-    form.querySelector('input[type="email"]').name = MAILERLITE_EMAIL_FIELD;
+    form.target = '_blank';
+    const email = form.querySelector('input[type="email"]');
+    email.name = MAILERLITE_EMAIL_FIELD;
     form.hidden = false;
     if (fallback) fallback.hidden = true;
+
     form.addEventListener('submit', async (e) => {
-      // Send in the background so the visitor stays on the page. If that
-      // fails for any reason, fall back to a normal form post.
-      if (!window.fetch) return;
       e.preventDefault();
-      const button = form.querySelector('button');
+      const say = (msg, ok = true) => { if (status) { status.textContent = msg; status.classList.toggle('bad-text', !ok); } };
+      // Honeypot: real people never see or fill this field, so quietly drop bot submissions.
+      const trap = form.querySelector('[data-hp]');
+      if (trap && trap.value) { form.reset(); say(THANKS); return; }
+      if (!email.value || !email.checkValidity()) { say('Please enter a valid email address.', false); email.focus(); return; }
+      const button = form.querySelector('button[type="submit"]');
       button.disabled = true;
       try {
-        await fetch(action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
+        if (!window.fetch || !window.FormData) throw new Error('fetch unavailable');
+        // no-cors: the response is opaque, so a resolved promise means the request was sent.
+        await fetch(action, { method: 'POST', mode: 'no-cors', body: new FormData(form) });
         form.reset();
-        if (status) status.textContent = 'Thanks! Check your inbox to confirm your email address.';
+        say(THANKS);
       } catch (err) {
-        form.submit();
+        // Fallback: a normal POST to MailerLite in a new tab, so this page stays open.
+        HTMLFormElement.prototype.submit.call(form);
+        say('Opening the sign-up confirmation in a new tab…');
       } finally {
         button.disabled = false;
       }

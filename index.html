@@ -103,15 +103,17 @@
 
 <section class="signup" data-signup aria-labelledby="signup-h">
 <h2 id="signup-h">Free UK tax deadline reminders</h2>
-<p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam, unsubscribe in one click.</p>
-<form hidden novalidate>
-<div class="field"><label for="signup-email">Email address</label><input type="email" id="signup-email" name="email" autocomplete="email" required></div>
+<p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam.</p>
+<form action="https://assets.mailerlite.com/jsonp/2747334/forms/202498295451354728/subscribe" method="post" target="_blank">
+<div class="field"><label for="signup-email">Email address</label><input type="email" id="signup-email" name="fields[email]" autocomplete="email" required aria-describedby="signup-consent"></div>
+<div class="visually-hidden" aria-hidden="true"><label for="signup-website">Leave this field empty</label><input type="text" id="signup-website" data-hp tabindex="-1" autocomplete="off"></div>
 <input type="hidden" name="ml-submit" value="1">
 <input type="hidden" name="anticsrf" value="true">
 <button class="btn btn-teal" type="submit">Send me reminders</button>
 </form>
+<p class="small" id="signup-consent">Free UK tax deadline reminders and new tools from TaxReadySheets. Unsubscribe any time. See our <a href="privacy/">Privacy page</a>.</p>
 <p data-signup-status role="status" aria-live="polite"></p>
-<div data-signup-fallback>
+<div data-signup-fallback hidden>
 <a class="btn btn-teal" href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">See our tax-ready spreadsheets on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a>
 <p class="small">Email reminders are launching soon. Until then, our spreadsheets have the 2026/27 deadlines built in.</p>
 </div>

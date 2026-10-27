@@ -53,7 +53,7 @@
 
 <div class="field"><label for="minutes">How long the service takes</label><div class="input-wrap"><input id="minutes" name="minutes" type="number" inputmode="decimal" min="0" step="any" value="75" aria-describedby="minutes-hint"><span class="suffix" aria-hidden="true">mins</span></div><p class="hint" id="minutes-hint">Include consultation, prep and clean-down time, not just the treatment itself.</p></div>
 <div class="field"><label for="hourlyRate">What you want to earn per hour</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="hourlyRate" name="hourlyRate" type="number" inputmode="decimal" min="0" step="any" value="18" aria-describedby="hourlyRate-hint"></div><p class="hint" id="hourlyRate-hint">Your pay before tax. Compare it with what a salon would pay you, plus a bit for running the business.</p></div>
-<div class="field"><label for="productCost">Product cost per service</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="productCost" name="productCost" type="number" inputmode="decimal" min="0" step="any" value="3.50" aria-describedby="productCost-hint"></div><p class="hint" id="productCost-hint">Colour, gel, lash glue, wax, disposables, towels laundry — the share used on one client.</p></div>
+<div class="field"><label for="productCost">Product cost per service</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="productCost" name="productCost" type="number" inputmode="decimal" min="0" step="any" value="3.50" aria-describedby="productCost-hint"></div><p class="hint" id="productCost-hint">Colour, gel, lash glue, wax, disposables, towel laundry — the share used on one client.</p></div>
 <div class="row-2">
 <div class="field"><label for="overheads">Monthly running costs</label><div class="input-wrap"><span class="prefix" aria-hidden="true">£</span><input id="overheads" name="overheads" type="number" inputmode="decimal" min="0" step="any" value="600" aria-describedby="overheads-hint"></div><p class="hint" id="overheads-hint">Chair or room rent, insurance, booking app, card fees, training.</p></div>
 <div class="field"><label for="servicesPerMonth">Services you do per month</label><input id="servicesPerMonth" name="servicesPerMonth" type="number" inputmode="decimal" min="0" step="any" value="100" aria-describedby="servicesPerMonth-hint"><p class="hint" id="servicesPerMonth-hint">All treatments, to share the running costs fairly.</p></div>
@@ -133,15 +133,17 @@
 </ul></section>
 <section class="signup" data-signup aria-labelledby="signup-h">
 <h2 id="signup-h">Free UK tax deadline reminders</h2>
-<p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam, unsubscribe in one click.</p>
-<form hidden novalidate>
-<div class="field"><label for="signup-email">Email address</label><input type="email" id="signup-email" name="email" autocomplete="email" required></div>
+<p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam.</p>
+<form action="https://assets.mailerlite.com/jsonp/2747334/forms/202498295451354728/subscribe" method="post" target="_blank">
+<div class="field"><label for="signup-email">Email address</label><input type="email" id="signup-email" name="fields[email]" autocomplete="email" required aria-describedby="signup-consent"></div>
+<div class="visually-hidden" aria-hidden="true"><label for="signup-website">Leave this field empty</label><input type="text" id="signup-website" data-hp tabindex="-1" autocomplete="off"></div>
 <input type="hidden" name="ml-submit" value="1">
 <input type="hidden" name="anticsrf" value="true">
 <button class="btn btn-teal" type="submit">Send me reminders</button>
 </form>
+<p class="small" id="signup-consent">Free UK tax deadline reminders and new tools from TaxReadySheets. Unsubscribe any time. See our <a href="../../privacy/">Privacy page</a>.</p>
 <p data-signup-status role="status" aria-live="polite"></p>
-<div data-signup-fallback>
+<div data-signup-fallback hidden>
 <a class="btn btn-teal" href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">See our tax-ready spreadsheets on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a>
 <p class="small">Email reminders are launching soon. Until then, our spreadsheets have the 2026/27 deadlines built in.</p>
 </div>

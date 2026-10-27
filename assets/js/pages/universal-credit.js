@@ -2,6 +2,7 @@ import { bindForm, setOuts, niceDate, esc } from '../ui.js';
 import { ucPeriods, isoDate } from '../calc.js';
 
 const short = { day: 'numeric', month: 'short', year: 'numeric' };
+const dm = { day: 'numeric', month: 'short' };
 
 bindForm('calc', (v) => {
   const day = Math.floor(Number(v.startDay));
@@ -16,7 +17,7 @@ bindForm('calc', (v) => {
   const todayIso = isoDate(new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())));
   body.innerHTML = periods.map((p) => {
     const current = p.start <= todayIso && todayIso <= p.end;
-    return `<tr${current ? ' class="current"' : ''}><td>${esc(niceDate(p.start, short))} – ${esc(niceDate(p.end, short))}${current ? ' <span class="visually-hidden">(current period)</span>' : ''}</td><td>${esc(niceDate(p.reportFrom))}</td><td>${esc(niceDate(p.reportBy))}</td><td>${esc(niceDate(p.paymentAround, short))}</td></tr>`;
+    return `<tr${current ? ' class="current"' : ''}><td>${esc(niceDate(p.start, short))} to<br>${esc(niceDate(p.end, short))}${current ? ' <span class="visually-hidden">(current period)</span>' : ''}</td><td>${esc(niceDate(p.reportFrom, dm))}</td><td>${esc(niceDate(p.reportBy, dm))}</td><td>${esc(niceDate(p.paymentAround, dm))}</td></tr>`;
   }).join('');
   const now = periods[0];
   const fallback = day >= 29 ? ` Because your period starts on day ${day}, in shorter months it starts on the last day of the month instead.` : '';

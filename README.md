@@ -89,19 +89,26 @@ To point a calculator at a **different** product, change `data-product="…"` on
 
 The shop URL is `etsyShopUrl` in `assets/js/site-config.js`.
 
-## How to connect MailerLite
+## Email sign-up (MailerLite)
 
-1. In MailerLite create an **embedded form** with just an email field, and copy its HTML code.
-2. Find `action="https://assets.mailerlite.com/jsonp/…/subscribe"` in that code and copy the URL.
-3. Paste it into `assets/js/site-config.js`:
+The "Free UK tax deadline reminders" box on the home page and every calculator page is **connected**: `MAILERLITE_FORM_ACTION` in `assets/js/site-config.js` holds the MailerLite form URL.
 
-   ```js
-   export const MAILERLITE_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/123456/forms/987654321/subscribe';
-   ```
+How it works:
 
-4. Commit and push. Every "Free UK tax deadline reminders" box now shows an email field. The address is posted straight to MailerLite (no MailerLite script is loaded) and the visitor sees a "check your inbox" message.
+- A plain HTML form posts `fields[email]`, `ml-submit=1` and `anticsrf=true` to that URL. MailerLite's `universal.js` is **not** loaded, and no MailerLite code runs until someone presses the button.
+- `assets/js/site.js` sends the form with `fetch` (`POST`, `mode: 'no-cors'`, `FormData`) so the visitor stays on the page, then shows "Thanks! Check your inbox to confirm."
+- If that fails, it falls back to a normal form POST to the same URL in a new tab (`target="_blank"`).
+- A hidden honeypot field (no `name`, so it is never sent) catches bots: if it has been filled in, nothing is sent.
+- A consent line sits under the field and links to the Privacy page.
 
-While `MAILERLITE_FORM_ACTION` is empty, each box shows a button to the Etsy shop instead. If your MailerLite embed names the email field something other than `fields[email]`, change `MAILERLITE_EMAIL_FIELD` too. Turn on double opt-in in MailerLite so the confirmation email does the verification.
+To change or switch it off:
+
+- **Use a different form:** paste its action URL (`https://assets.mailerlite.com/jsonp/…/subscribe`) into `MAILERLITE_FORM_ACTION`. If its email field isn't called `fields[email]`, change `MAILERLITE_EMAIL_FIELD` too.
+- **Turn it off:** set `MAILERLITE_FORM_ACTION = ''`. Every box then shows a button to the Etsy shop instead.
+
+The page HTML also holds a copy of the form action for visitors without JavaScript. If you change the URL, search and replace it in the `.html` files as well (the script keeps JavaScript users right either way).
+
+Keep double opt-in switched on in MailerLite so the confirmation email does the verification.
 
 ## How to add a calculator
 
@@ -148,4 +155,4 @@ Change `baseUrl` in `assets/js/site-config.js`, then run `node tools/set-base-ur
 - **Platform reporting**: shown as reported at 30+ sales *or* £1,700+ (the sterling estimate of €2,000) in a calendar year, with a clear note that reporting is not a tax.
 - **Pricing calculators** round prices up to the next whole pound (50p per dog/pet for pet care) and show break-even separately.
 - **Faceless brand**: no personal names; worked examples use fictional first names only.
-- **The email form** posts directly to MailerLite with `fetch` (no third-party script). Visitors without JavaScript see the Etsy shop button.
+- **The email form** posts directly to MailerLite with `fetch` (no third-party script). Visitors without JavaScript get a normal form post in a new tab.

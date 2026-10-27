@@ -24,7 +24,7 @@ export const SITE = {
  * button to the Etsy shop instead of an email field.
  * ==================================================================
  */
-export const MAILERLITE_FORM_ACTION = '';
+export const MAILERLITE_FORM_ACTION = 'https://assets.mailerlite.com/jsonp/2747334/forms/202498295451354728/subscribe';
 
 // The name MailerLite gives its email field. Only change it if your embed code uses a different name.
 export const MAILERLITE_EMAIL_FIELD = 'fields[email]';

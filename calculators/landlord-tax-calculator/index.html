@@ -93,11 +93,11 @@
 <thead><tr><th></th><th>Amount</th></tr></thead>
 <tbody>
 <tr><td>Rent less running costs (interest is not deducted)</td><td>£17,000.00</td></tr>
-<tr><td colspan="2"><strong>2026/27</strong></td></tr>
+<tr><td><strong>2026/27</strong></td><td></td></tr>
 <tr><td>Tax on salary + rent (£57,000) minus tax on salary alone</td><td>£4,746.00</td></tr>
 <tr><td>Less mortgage interest credit: £6,000 × 20%</td><td>−£1,200.00</td></tr>
 <tr><th>Tax on rent 2026/27</th><th>£3,546.00</th></tr>
-<tr><td colspan="2"><strong>2027/28 (same figures, new rates)</strong></td></tr>
+<tr><td><strong>2027/28 (same figures, new rates)</strong></td><td></td></tr>
 <tr><td>£10,270 at 22% (rest of the basic rate band)</td><td>£2,259.40</td></tr>
 <tr><td>£6,730 at 42%</td><td>£2,826.60</td></tr>
 <tr><td>Less mortgage interest credit: £6,000 × 22%</td><td>−£1,320.00</td></tr>
@@ -136,15 +136,17 @@
 </ul></section>
 <section class="signup" data-signup aria-labelledby="signup-h">
 <h2 id="signup-h">Free UK tax deadline reminders</h2>
-<p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam, unsubscribe in one click.</p>
-<form hidden novalidate>
-<div class="field"><label for="signup-email">Email address</label><input type="email" id="signup-email" name="email" autocomplete="email" required></div>
+<p>A short, plain email before the dates that matter to the self-employed: the 31 January and 31 July payments, the October registration cut-off and Making Tax Digital quarterly updates. No spam.</p>
+<form action="https://assets.mailerlite.com/jsonp/2747334/forms/202498295451354728/subscribe" method="post" target="_blank">
+<div class="field"><label for="signup-email">Email address</label><input type="email" id="signup-email" name="fields[email]" autocomplete="email" required aria-describedby="signup-consent"></div>
+<div class="visually-hidden" aria-hidden="true"><label for="signup-website">Leave this field empty</label><input type="text" id="signup-website" data-hp tabindex="-1" autocomplete="off"></div>
 <input type="hidden" name="ml-submit" value="1">
 <input type="hidden" name="anticsrf" value="true">
 <button class="btn btn-teal" type="submit">Send me reminders</button>
 </form>
+<p class="small" id="signup-consent">Free UK tax deadline reminders and new tools from TaxReadySheets. Unsubscribe any time. See our <a href="../../privacy/">Privacy page</a>.</p>
 <p data-signup-status role="status" aria-live="polite"></p>
-<div data-signup-fallback>
+<div data-signup-fallback hidden>
 <a class="btn btn-teal" href="https://www.etsy.com/shop/TaxReadySheets" data-shop-link target="_blank" rel="noopener">See our tax-ready spreadsheets on Etsy<span class="visually-hidden"> (opens in a new tab)</span></a>
 <p class="small">Email reminders are launching soon. Until then, our spreadsheets have the 2026/27 deadlines built in.</p>
 </div>

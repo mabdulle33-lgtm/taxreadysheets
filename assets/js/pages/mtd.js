@@ -15,7 +15,7 @@ bindForm('calc', (v) => {
     return;
   }
   const raw = [v.y2425, v.y2526, v.y2627];
-  body.innerHTML = r.years.map((y, i) => `<tr${r.required && y.basedOn === r.basedOn ? ' class="best"' : ''}><td>${esc(y.basedOn)}${i > 0 && isBlank(raw[i]) ? ' <span class="hint">(assumed)</span>' : ''}</td><td>${esc(gbp(y.income, { whole: true }))}</td><td>${esc(gbp(y.threshold, { whole: true }))}</td><td>${y.over ? esc(y.startLabel) : 'No'}</td></tr>`).join('');
+  body.innerHTML = r.years.map((y, i) => `<tr${r.required && y.basedOn === r.basedOn ? ' class="best"' : ''}><td>${esc(y.basedOn)}${i > 0 && isBlank(raw[i]) ? ' (assumed)' : ''}</td><td>${esc(gbp(y.income, { whole: true }))}</td><td>${esc(gbp(y.threshold, { whole: true }))}</td><td>${y.over ? esc(y.startLabel) : 'No'}</td></tr>`).join('');
 
   let note;
   if (r.required) {
