@@ -1,0 +1,9 @@
+{
+  "name": "taxreadysheets",
+  "private": true,
+  "description": "Free UK tax calculators for the self-employed. Static site - no build step, no dependencies.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  }
+}
