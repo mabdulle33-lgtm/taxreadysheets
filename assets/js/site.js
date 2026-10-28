@@ -113,7 +113,7 @@ function fillProducts() {
   document.querySelectorAll('a[data-shop-link]').forEach((a) => { a.href = SITE.etsyShopUrl; });
 }
 
-const THANKS = 'Thanks! Check your inbox to confirm.';
+const THANKS = 'Thanks! Check your inbox and confirm, then we\'ll email your free calculator.';
 
 function setupSignups() {
   const action = (MAILERLITE_FORM_ACTION || '').trim();

@@ -125,7 +125,7 @@ test('calculator pages have every required section', () => {
     assert.match(h, /Estimates only, not tax advice/, `${p.rel}: disclaimer`);
     assert.match(h, /GOV\.UK/, `${p.rel}: GOV.UK pointer`);
     assert.match(h, /data-signup/, `${p.rel}: sign-up block`);
-    assert.match(h, /Free UK tax deadline reminders/, `${p.rel}: sign-up heading`);
+    assert.match(h, /Free tax set-aside calculator \+ deadline reminders/, `${p.rel}: sign-up heading`);
     const product = h.match(/data-product="([^"]+)"/);
     assert.ok(product && PRODUCTS[product[1]], `${p.rel}: product box with a known product`);
     const script = h.match(/src="[^"]*assets\/js\/pages\/([^"?]+)(?:\?v=\d+)?"/);
@@ -134,7 +134,7 @@ test('calculator pages have every required section', () => {
 });
 
 test('home page has the sign-up block', () => {
-  assert.match(pages.find((p) => p.rel === 'index.html').html, /Free UK tax deadline reminders/);
+  assert.match(pages.find((p) => p.rel === 'index.html').html, /Free tax set-aside calculator \+ deadline reminders/);
 });
 
 test('sitemap lists every indexable page with the base URL; robots points at it', () => {
