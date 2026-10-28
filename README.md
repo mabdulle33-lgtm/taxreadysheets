@@ -156,3 +156,13 @@ Change `baseUrl` in `assets/js/site-config.js`, then run `node tools/set-base-ur
 - **Pricing calculators** round prices up to the next whole pound (50p per dog/pet for pet care) and show break-even separately.
 - **Faceless brand**: no personal names; worked examples use fictional first names only.
 - **The email form** posts directly to MailerLite with `fetch` (no third-party script). Visitors without JavaScript get a normal form post in a new tab.
+
+## Cache-busting after changes
+
+Pages load `style.css`, `theme-init.js`, `site.js` and the page scripts with a `?v=YYYYMMDD` tag, so returning visitors get the new files straight after an update instead of a mix of old and new (GitHub Pages lets browsers cache files for ~10 minutes). After changing CSS or JS, bump the tag on every page, e.g.:
+
+```sh
+find . -name '*.html' -not -path './.git/*' -not -path './docs/*' -print0 | xargs -0 sed -i -E 's/\?v=[0-9]+"/?v=NEWDATE"/g'
+```
+
+Dark mode is the default look; visitors can switch with the sun/moon switch in the header and their choice is remembered.

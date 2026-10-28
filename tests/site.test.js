@@ -128,7 +128,7 @@ test('calculator pages have every required section', () => {
     assert.match(h, /Free UK tax deadline reminders/, `${p.rel}: sign-up heading`);
     const product = h.match(/data-product="([^"]+)"/);
     assert.ok(product && PRODUCTS[product[1]], `${p.rel}: product box with a known product`);
-    const script = h.match(/src="[^"]*assets\/js\/pages\/([^"]+)"/);
+    const script = h.match(/src="[^"]*assets\/js\/pages\/([^"?]+)(?:\?v=\d+)?"/);
     assert.ok(script && existsSync(join(ROOT, 'assets/js/pages', script[1])), `${p.rel}: page script`);
   }
 });

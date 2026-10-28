@@ -153,7 +153,7 @@ test('every page: theme script, sticky header with menu + theme buttons, self-ho
   assert.ok(existsSync(join(ROOT, 'assets/fonts/Inter-OFL.txt')), 'font licence ships with the font');
   for (const p of pages) {
     const h = p.html;
-    assert.match(h, /<script src="[^"]*assets\/js\/theme-init\.js"><\/script>\s*<link rel="preload"[^>]*inter-latin-wght-normal\.woff2/, `${p.rel}: theme-init + font preload`);
+    assert.match(h, /<script src="[^"]*assets\/js\/theme-init\.js(?:\?v=\d+)?"><\/script>\s*<link rel="preload"[^>]*inter-latin-wght-normal\.woff2/, `${p.rel}: theme-init + font preload`);
     assert.match(h, /data-theme-toggle/, `${p.rel}: theme toggle`);
     assert.match(h, /data-nav-toggle aria-expanded="false" aria-controls="site-nav"/, `${p.rel}: menu button`);
     assert.match(h, /<nav class="site-nav" id="site-nav"/, `${p.rel}: nav id`);
@@ -180,7 +180,7 @@ test('calculator pages: actions, help, sliders, chart and related cards', () => 
 
 test('page scripts that have a chart call chart()', () => {
   for (const p of calcPages.filter((x) => /data-chart/.test(x.html))) {
-    const script = p.html.match(/src="[^"]*assets\/js\/pages\/([^"]+)"/)[1];
+    const script = p.html.match(/src="[^"]*assets\/js\/pages\/([^"?]+)(?:\?v=\d+)?"/)[1];
     assert.match(readFileSync(join(ROOT, 'assets/js/pages', script), 'utf8'), /\bchart\(\[/, script);
   }
 });
@@ -200,7 +200,7 @@ test('guides: reading time and a table of contents that links to real headings',
 test('home: hero estimate, trust strip, finder, countdown, products, guides', () => {
   const h = page('index.html');
   assert.match(h, /<form class="quick[^"]*" id="quick"/);
-  assert.match(h, /src="assets\/js\/pages\/home\.js"/);
+  assert.match(h, /src="assets\/js\/pages\/home\.js(?:\?v=\d+)?"/);
   for (const t of ['Checked for 2026/27', 'Based on GOV.UK rates', 'No sign-up', 'Nothing leaves your device']) assert.ok(h.includes(t), t);
   assert.match(h, /data-finder/);
   assert.equal((h.match(/data-filter="/g) || []).length, 10);
