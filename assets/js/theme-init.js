@@ -6,8 +6,11 @@
 (function () {
   var root = document.documentElement;
   root.classList.add('js');
+  // Dark is the default look. A visitor's own light/dark choice (saved below) wins.
+  var theme = 'dark';
   try {
     var t = window.localStorage.getItem('trs-theme');
-    if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t);
-  } catch (e) { /* storage blocked: follow the system setting */ }
+    if (t === 'light' || t === 'dark') theme = t;
+  } catch (e) { /* storage blocked: use the default */ }
+  root.setAttribute('data-theme', theme);
 })();
