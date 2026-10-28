@@ -405,7 +405,7 @@ html:not(.js) .js-only { display: none !important; }
 .finder .section-head { margin-top: var(--space-7); }
 .finder-controls { margin-bottom: var(--space-5); }
 .finder-search { position: relative; max-width: 34rem; margin-bottom: .9rem; }
-.finder-search input { padding-left: 2.75rem; min-height: 52px; border-radius: 14px; font-size: 1rem; box-shadow: var(--shadow-sm); }
+.finder-search input, .finder-search input[type="search"] { padding-left: 2.75rem; min-height: 52px; border-radius: 14px; font-size: 1rem; box-shadow: var(--shadow-sm); }
 .finder-search-icon { position: absolute; left: .95rem; top: 50%; transform: translateY(-50%); color: var(--muted); width: 1.2rem; height: 1.2rem; pointer-events: none; }
 .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
 .chip {
