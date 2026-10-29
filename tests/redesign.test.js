@@ -204,7 +204,7 @@ test('home: hero estimate, trust strip, finder, countdown, products, guides', ()
   for (const t of ['Checked for 2026/27', 'Based on GOV.UK rates', 'No sign-up', 'Nothing leaves your device']) assert.ok(h.includes(t), t);
   assert.match(h, /data-finder/);
   assert.equal((h.match(/data-filter="/g) || []).length, 10);
-  assert.equal((h.match(/class="calc-card reveal" data-trades=/g) || []).length, 15);
+  assert.equal((h.match(/class="calc-card reveal" data-trades=/g) || []).length, 16);
   assert.match(h, /data-countdown/);
   assert.match(h, /How it works/);
   assert.match(h, /Spreadsheets that do it all year/);
