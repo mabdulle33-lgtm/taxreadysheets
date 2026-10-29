@@ -23,12 +23,14 @@
  *  - Construction Industry Scheme: gov.uk/what-is-the-construction-industry-scheme
  *  - Making Tax Digital for Income Tax: gov.uk/guidance/check-if-youre-eligible-for-making-tax-digital-for-income-tax
  *  - Digital platform reporting: gov.uk/guidance/reporting-rules-for-digital-platforms
- *  - Property income rates from 2027/28: Budget 2025 announcement (England & Northern Ireland)
+ *  - Property income rates from 2027/28: Budget 2026 (28 October 2026), OOTLAR Annex A — 24%, 44%, 49%
+ *  - Trading allowance £3,000 and 35p mileage over 10,000 miles from 6 April 2027: Budget 2026 policy costings
+ *  - Mileage 55p from 6 April 2026: gov.uk/simpler-income-tax-simplified-expenses/vehicles
  *  - Self Assessment deadlines and payments on account: gov.uk/self-assessment-tax-returns,
  *    gov.uk/understand-self-assessment-bill/payments-on-account
  */
 
-export const LAST_CHECKED = '27 October 2026';
+export const LAST_CHECKED = '29 October 2026';
 
 export const RATES = {
   taxYear: '2026/27',
@@ -86,6 +88,7 @@ export const RATES = {
   },
 
   tradingAllowance: 1000,  // £1,000 tax-free trading income / alternative to expenses
+  tradingAllowanceFrom2027: { effectiveFrom: '2027-04-06', taxYear: '2027/28', amount: 3000 }, // Budget 2026
   propertyAllowance: 1000, // £1,000 tax-free property income / alternative to expenses
 
   rentARoom: {
@@ -104,14 +107,17 @@ export const RATES = {
       effectiveFrom: '2027-04-06',
       taxYear: '2027/28',
       regions: ['england', 'ni'],
-      rates: [0.22, 0.42, 0.47], // basic, higher, additional (same band limits as rUK above)
-      financeCostCredit: 0.22
+      rates: [0.24, 0.44, 0.49], // basic, higher, additional (same band limits as rUK above) — Budget 2026
+      financeCostCredit: 0.24
     }
   },
 
   // HMRC approved mileage allowance payments (business miles in a tax year).
+  // 55p from 6 April 2026 (raised from 45p in May 2026, backdated). From
+  // 6 April 2027 the rate over 10,000 miles rises from 25p to 35p (Budget 2026).
   mileage: {
-    carVan: { firstRate: 0.45, laterRate: 0.25, threshold: 10000 },
+    carVan: { firstRate: 0.55, laterRate: 0.25, threshold: 10000 },
+    from2027: { effectiveFrom: '2027-04-06', taxYear: '2027/28', carVanLaterRate: 0.35 },
     motorcycle: 0.24,
     bicycle: 0.20
   },

@@ -195,19 +195,19 @@ test('beauty service price', () => {
 });
 
 test('cleaning job price', () => {
-  // 3h × 2 cleaners × £15 = 90; supplies 5; 10 miles × 45p = 4.50; overheads 300/60 = 5 → 104.50; +20% = 125.40 → £126
+  // 3h × 2 cleaners × £15 = 90; supplies 5; 10 miles × 55p = 5.50; overheads 300/60 = 5 → 105.50; +20% = 126.60 → £127
   const r = c.cleaningJobPrice({ hours: 3, cleaners: 2, payPerHour: 15, supplies: 5, travelMiles: 10, overheadsMonthly: 300, jobsPerMonth: 60, marginPct: 20, frequency: 'weekly' });
-  near(r.cost, 104.5);
-  near(r.price, 125.4);
-  assert.equal(r.roundedPrice, 126);
-  near(r.pricePerHour, 42);
-  near(r.clientMonthly, 546); // 126 × 52 / 12
+  near(r.cost, 105.5);
+  near(r.price, 126.6);
+  assert.equal(r.roundedPrice, 127);
+  near(r.pricePerHour, 127 / 3);
+  near(r.clientMonthly, 127 * 52 / 12);
 });
 
 test('dog walking price per dog', () => {
-  // (60 + 15 min) = 1.25h × £16 = 20; 6 miles × 45p = 2.70; overheads 150/100 = 1.50 → 24.20; +0% → split 4 dogs = 6.05 → £6.50 each
+  // (60 + 15 min) = 1.25h × £16 = 20; 6 miles × 55p = 3.30; overheads 150/100 = 1.50 → 24.80; +0% → split 4 dogs = 6.20 → £6.50 each
   const r = c.petCarePrice({ minutes: 60, travelMinutes: 15, hourlyRate: 16, pets: 4, travelMiles: 6, overheadsMonthly: 150, visitsPerMonth: 100, marginPct: 0 });
-  near(r.price, 24.2);
+  near(r.price, 24.8);
   near(r.pricePerPet, 6.5);
   near(r.visitTotal, 26);
   const solo = c.petCarePrice({ minutes: 30, hourlyRate: 20, pets: 0 });
@@ -252,11 +252,11 @@ test('landlord 2026/27 vs 2027/28 (England)', () => {
   // Salary 40,000, rent 20,000, costs 3,000, mortgage interest 6,000 → profit 17,000
   // 26/27: total 57,000 taxable 44,430 → 7,540 + 6,730 × 40% = 10,232; salary alone 5,486
   //        rent tax 4,746 − credit 20% × 6,000 (1,200) = 3,546
-  // 27/28: 10,270 × 22% (2,259.40) + 6,730 × 42% (2,826.60) = 5,086 − 22% × 6,000 (1,320) = 3,766
+  // 27/28: 10,270 × 24% (2,464.80) + 6,730 × 44% (2,961.20) = 5,426 − 24% × 6,000 (1,440) = 3,986 (Budget 2026 rates)
   const r = c.landlordTax({ rent: 20000, expenses: 3000, finance: 6000, otherIncome: 40000, region: 'england' });
   near(r.current.propertyTax, 3546);
-  near(r.next.propertyTax, 3766);
-  near(r.change, 220);
+  near(r.next.propertyTax, 3986);
+  near(r.change, 440);
   assert.equal(r.newRatesApply, true);
   near(r.current.afterTax, 7454);
   assert.equal(r.mtd.required, false); // 20,000 qualifying income
@@ -305,9 +305,9 @@ test('Rent a Room vs property allowance vs expenses', () => {
 });
 
 test('mileage allowance rates', () => {
-  near(c.mileageAllowance(8000), 3600);
-  near(c.mileageAllowance(10000), 4500);
-  near(c.mileageAllowance(15000), 5750); // 4,500 + 5,000 × 25p
+  near(c.mileageAllowance(8000), 4400); // 55p from 6 April 2026
+  near(c.mileageAllowance(10000), 5500);
+  near(c.mileageAllowance(15000), 6750); // 5,500 + 5,000 × 25p
   near(c.mileageAllowance(1000, 'motorcycle'), 240);
   near(c.mileageAllowance(1000, 'bicycle'), 200);
   assert.equal(c.mileageAllowance(-50), 0);
@@ -315,30 +315,30 @@ test('mileage allowance rates', () => {
 
 test('mileage claim for employees nets off employer payments', () => {
   const r = c.mileageClaim({ carMiles: 12000, mode: 'employee', employerPaid: 3000 });
-  near(r.total, 5000); // 4,500 + 2,000 × 25p
-  near(r.claimable, 2000);
-  near(r.savingBasic, 400);
+  near(r.total, 6000); // 5,500 + 2,000 × 25p
+  near(r.claimable, 3000);
+  near(r.savingBasic, 600);
   const over = c.mileageClaim({ carMiles: 1000, mode: 'employee', employerPaid: 600 });
   near(over.claimable, 0);
-  near(over.taxedExtra, 150);
+  near(over.taxedExtra, 50);
   const se = c.mileageClaim({ carMiles: 1000, bicycleMiles: 500 });
-  near(se.total, 550);
-  near(se.savingBasic, 143); // 550 × 26%
+  near(se.total, 650);
+  near(se.savingBasic, 169); // 650 × 26%
 });
 
 test('driver: mileage vs actual vehicle costs', () => {
-  // Fares 40,000, fees 8,000, other 1,000. 20,000 miles → 4,500 + 2,500 = 7,000 mileage.
-  // Actual 9,000 × 80% = 7,200 → actual wins by 200 profit: tax+NI difference 26% = 52
+  // Fares 40,000, fees 8,000, other 1,000. 20,000 miles → 5,500 + 2,500 = 8,000 mileage.
+  // Actual 9,000 × 80% = 7,200 → mileage wins by 800 profit: tax+NI difference 26% = 208
   const r = c.driverComparison({ fares: 40000, platformFees: 8000, otherExpenses: 1000, miles: 20000, vehicleCosts: 9000, businessPct: 80 });
-  near(r.mileageDeduction, 7000);
+  near(r.mileageDeduction, 8000);
   near(r.actualDeduction, 7200);
-  assert.equal(r.best, 'actual');
-  near(r.mileage.profit, 24000);
+  assert.equal(r.best, 'mileage');
+  near(r.mileage.profit, 23000);
   near(r.actual.profit, 23800);
-  // Tax on 24,000: 2,286 + 685.80 = 2,971.80; on 23,800: 2,246 + 673.80 = 2,919.80 → 52 less with actual costs
-  near(r.mileage.total, 2971.8);
+  // Tax on 23,000: 2,086 + 625.80 = 2,711.80; on 23,800: 2,246 + 673.80 = 2,919.80 → 208 less with mileage
+  near(r.mileage.total, 2711.8);
   near(r.actual.total, 2919.8);
-  near(r.difference, 52);
+  near(r.difference, 208);
   // Cash left: 40,000 − 8,000 − 1,000 − 9,000 (real vehicle spend) − tax
   near(r.actual.cashTakeHome, 19080.2);
   const cheap = c.driverComparison({ fares: 30000, miles: 15000, vehicleCosts: 3000, businessPct: 100 });
@@ -425,7 +425,7 @@ test('rates file holds the checked 2026/27 figures', () => {
   assert.equal(RATES.class4.upperProfitsLimit, 50270);
   assert.equal(RATES.class2.smallProfitsThreshold, 7105);
   assert.equal(RATES.rentARoom.full, 7500);
-  assert.deepEqual(RATES.property.from2027.rates, [0.22, 0.42, 0.47]);
+  assert.deepEqual(RATES.property.from2027.rates, [0.24, 0.44, 0.49]);
   assert.deepEqual(RATES.mtd.map((m) => m.over), [50000, 30000, 20000]);
   // Scottish band limits are taxable income = gross threshold − 12,570
   const s = RATES.incomeTax.scotland.bands.map((b) => b.upTo);

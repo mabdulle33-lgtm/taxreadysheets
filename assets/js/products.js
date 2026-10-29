@@ -15,7 +15,7 @@ export const PRODUCTS = {
   mileage: {
     id: '4595882837',
     title: 'HMRC Mileage Log Spreadsheet',
-    blurb: 'Record every business journey with date, purpose and miles. The 45p/25p switch at 10,000 miles is worked out for you, so your claim is ready when you file.'
+    blurb: 'Record every business journey with date, purpose and miles. The 55p/25p switch at 10,000 miles is worked out for you, so your claim is ready when you file.'
   },
   cleaning: {
     id: '4596163618',
