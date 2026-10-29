@@ -162,5 +162,26 @@ export const RATES = {
     // than 80% of your tax was collected at source (e.g. PAYE).
     paymentsOnAccountThreshold: 1000,
     collectedAtSourceLimit: 0.8
+  },
+
+  // The 2025/26 return and bill, due 31 January 2027. Used by the payments
+  // on account calculator and the January checklist guide.
+  // https://www.gov.uk/self-assessment-tax-returns/deadlines
+  // https://www.gov.uk/pay-self-assessment-tax-bill/pay-through-tax-code
+  // https://www.gov.uk/pay-self-assessment-tax-bill/pay-in-instalments
+  // https://www.gov.uk/government/publications/rates-and-allowances-hmrc-interest-rates-for-late-and-early-payments
+  januaryBill: {
+    taxYear: '2025/26',
+    dueDate: '31 January 2027',
+    secondPaymentOnAccount: '31 July 2027',
+    codingOutBy: '30 December 2026', // file online by this date to pay through your tax code
+    codingOutLimit: 3000,            // only if you owe less than this and pay tax through PAYE
+    timeToPayOnlineLimit: 30000,     // set up a payment plan online if you owe this or less
+    lateFilingPenalty: 100,
+    // The 2025/26 return is under the current penalty rules for most people:
+    // 5% of tax unpaid at 30 days, again at 6 months and at 12 months.
+    latePaymentPenalty: 0.05,
+    // Bank of England base rate (3.75%) + 4%, from 9 January 2026.
+    latePaymentInterest: 0.0775
   }
 };

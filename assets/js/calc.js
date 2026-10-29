@@ -7,6 +7,7 @@
  */
 
 import { RATES } from './rates-2026-27.js';
+import { parseUkDate } from './deadlines.js';
 
 /* ---------- small helpers ---------- */
 
@@ -158,7 +159,9 @@ export function paymentsOnAccount(selfAssessmentBill, taxCollectedAtSource = 0, 
   const source = clean(taxCollectedAtSource);
   const totalTax = bill + source;
   const sourceShare = totalTax > 0 ? source / totalTax : 0;
-  const applies = bill > sa.paymentsOnAccountThreshold && sourceShare < sa.collectedAtSourceLimit;
+  // GOV.UK: no payments on account if last year's bill was LESS than £1,000,
+  // or if more than 80% of your tax was collected at source.
+  const applies = bill >= sa.paymentsOnAccountThreshold && sourceShare < sa.collectedAtSourceLimit;
   const each = applies ? round2(bill / 2) : 0;
   return {
     applies,
@@ -167,6 +170,77 @@ export function paymentsOnAccount(selfAssessmentBill, taxCollectedAtSource = 0, 
     // plus the first payment on account towards next year.
     firstJanuaryTotal: round2(bill + each),
     sourceShare
+  };
+}
+
+/* ---------- what to pay on 31 January and 31 July ---------- */
+
+/**
+ * The January bill: the rest of last year's tax plus the first payment on
+ * account for this year, then the second payment on account in July.
+ *
+ * @param {number} p.bill        income tax + Class 4 NI for the year being filed (after tax already taken at source)
+ * @param {number} p.taxAtSource tax already taken through PAYE (wages, pension) — for the 80% test
+ * @param {number} p.poaPaid     payments on account already made towards that year
+ * @param {number} p.otherDue    other amounts on the bill not counted for payments on account
+ *                               (student loan, voluntary Class 2, capital gains tax)
+ * @param {number|''} p.expectedNext  your estimate of next year's bill, if you want lower payments on account
+ * @param {Date} p.today
+ */
+export function januaryPayments({ bill, taxAtSource = 0, poaPaid = 0, otherDue = 0, expectedNext = '', today = new Date(), rates = RATES } = {}) {
+  const jb = rates.januaryBill;
+  const b = clean(bill);
+  const other = clean(otherDue);
+  const paid = clean(poaPaid);
+  const poa = paymentsOnAccount(b, taxAtSource, rates);
+
+  // Balancing payment: what is left of the year's bill (negative = paid too much).
+  const balance = round2(b + other - paid);
+  const balanceDue = Math.max(0, balance);
+
+  // Payments on account: half of the bill each, or half of a lower estimate.
+  const estimate = isBlank(expectedNext) ? null : clean(expectedNext);
+  const reduced = poa.applies && estimate !== null && estimate < b;
+  const each = poa.applies ? (reduced ? round2(estimate / 2) : poa.each) : 0;
+
+  // Any overpayment is set against the January payment on account first.
+  const januaryRaw = round2(balance + each);
+  const january = Math.max(0, januaryRaw);
+  const refund = round2(Math.max(0, -januaryRaw));
+  const july = each;
+
+  // How much to put aside each month from today until the January deadline.
+  const due = new Date(`${parseUkDate(jb.dueDate)}T00:00:00Z`);
+  const now = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
+  const daysLeft = Math.round((due - now) / 86400000);
+  const monthsLeft = daysLeft < 0 ? 0 : Math.max(1, Math.round(daysLeft / 30.44));
+  const monthlySaving = monthsLeft ? round2(january / monthsLeft) : 0;
+
+  // Paying late: 5% of the balancing payment still unpaid at 30 days, plus interest on everything.
+  const penaltyAt30Days = round2(balanceDue * jb.latePaymentPenalty);
+  const interestPerMonth = round2((january * jb.latePaymentInterest) / 12);
+
+  return {
+    bill: round2(b),
+    applies: poa.applies,
+    reason: poa.applies ? 'applies' : b < rates.selfAssessment.paymentsOnAccountThreshold ? 'under1000' : 'mostlyAtSource',
+    sourceShare: poa.sourceShare,
+    fullEach: poa.each,
+    each,
+    reduced,
+    balance,
+    balanceDue,
+    january,
+    july,
+    refund,
+    total: round2(january + july),
+    daysLeft,
+    monthsLeft,
+    monthlySaving,
+    canCodeOut: clean(taxAtSource) > 0 && balanceDue > 0 && balanceDue < jb.codingOutLimit,
+    overTimeToPayLimit: january > jb.timeToPayOnlineLimit,
+    penaltyAt30Days,
+    interestPerMonth
   };
 }
 

@@ -12,8 +12,8 @@ Live address: <https://taxreadysheets.co.uk/>
 
 ```
 index.html                      Home page
-calculators/                    One folder per calculator (14) + an index page
-guides/                         Guides index + 3 articles
+calculators/                    One folder per calculator (15) + an index page
+guides/                         Guides index + 6 articles
 about/, privacy/, 404.html      Other pages
 assets/css/style.css            The only stylesheet
 assets/js/rates-2026-27.js      ★ Every tax rate and threshold
@@ -30,7 +30,7 @@ tests/site.test.js              Meta tags, internal links, JSON-LD, sitemap chec
 tools/set-base-url.mjs          Rewrites the base URL in every page if you move the site
 ```
 
-### The 14 calculators
+### The 15 calculators
 
 | Page | Etsy product |
 |---|---|
@@ -48,6 +48,7 @@ tools/set-base-url.mjs          Rewrites the base URL in every page if you move 
 | `calculators/tutor-hourly-rate-calculator/` | Tutor |
 | `calculators/universal-credit-reporting-dates/` | Universal Credit self-employed |
 | `calculators/making-tax-digital-checker/` | Sole trader bookkeeping |
+| `calculators/payments-on-account-calculator/` | Sole trader bookkeeping |
 
 ## Run the tests
 

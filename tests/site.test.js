@@ -36,7 +36,7 @@ const isCalc = (p) => /^calculators\/[^/]+\/$/.test(p.urlPath);
 
 test('found the expected pages', () => {
   assert.ok(pages.length >= 23, `only ${pages.length} pages`);
-  assert.equal(pages.filter(isCalc).length, 14);
+  assert.equal(pages.filter(isCalc).length, 15);
 });
 
 for (const p of pages) {

@@ -134,9 +134,9 @@ test('payments on account not needed when 80%+ collected at source', () => {
   const r = c.selfEmployedTax({ turnover: 5000, expenses: 1000, employmentIncome: 60000 });
   near(r.incomeTax, 1600);
   assert.equal(r.paymentsOnAccount.applies, false);
-  // Bill of £1,000 or less never needs them
-  assert.equal(c.paymentsOnAccount(1000, 0).applies, false);
-  assert.equal(c.paymentsOnAccount(1000.01, 0).applies, true);
+  // GOV.UK: no payments on account if the bill was LESS than £1,000; £1,000 itself needs them
+  assert.equal(c.paymentsOnAccount(999.99, 0).applies, false);
+  assert.equal(c.paymentsOnAccount(1000, 0).applies, true);
 });
 
 test('self-employed personal allowance taper (profit £110,000)', () => {
@@ -430,4 +430,80 @@ test('rates file holds the checked 2026/27 figures', () => {
   // Scottish band limits are taxable income = gross threshold − 12,570
   const s = RATES.incomeTax.scotland.bands.map((b) => b.upTo);
   assert.deepEqual(s.slice(0, 4), [16537 - 12570, 29526 - 12570, 43662 - 12570, 75000 - 12570]);
+});
+
+/* ---------- January bill: payments on account calculator ---------- */
+
+const oct29 = new Date(2026, 9, 29);
+
+test('January bill: first year — whole 2025/26 bill plus half again', () => {
+  // Profit £30,000 in 2025/26: tax 3,486 + Class 4 1,045.80 = 4,531.80, nothing paid yet.
+  const r = c.januaryPayments({ bill: 4531.8, today: oct29 });
+  assert.equal(r.applies, true);
+  near(r.each, 2265.9);          // 4,531.80 / 2
+  near(r.january, 6797.7);       // 4,531.80 + 2,265.90
+  near(r.july, 2265.9);
+  near(r.total, 9063.6);
+  assert.equal(r.daysLeft, 94);  // 29 Oct 2026 → 31 Jan 2027
+  assert.equal(r.monthsLeft, 3); // 94 / 30.44 = 3.09
+  near(r.monthlySaving, 2265.9); // 6,797.70 / 3
+  near(r.penaltyAt30Days, 226.59); // 5% of 4,531.80
+  near(r.interestPerMonth, 43.9);  // 6,797.70 × 7.75% / 12 = 43.90
+});
+
+test('January bill: second year — payments already made come off the balance', () => {
+  // 2025/26 bill 5,000; paid 2,000 in Jan 2026 and 2,000 in Jul 2026.
+  const r = c.januaryPayments({ bill: 5000, poaPaid: 4000, today: oct29 });
+  near(r.balance, 1000);
+  near(r.each, 2500);
+  near(r.january, 3500);  // 1,000 + 2,500
+  near(r.july, 2500);
+  near(r.penaltyAt30Days, 50); // 5% of the 1,000 balance only
+});
+
+test('January bill: no payments on account under £1,000 or when mostly taxed at source', () => {
+  const small = c.januaryPayments({ bill: 800, today: oct29 });
+  assert.equal(small.applies, false);
+  assert.equal(small.reason, 'under1000');
+  near(small.january, 800);
+  assert.equal(small.july, 0);
+  // Job with £7,000 PAYE + £1,500 to pay: 7,000 / 8,500 = 82% at source
+  const job = c.januaryPayments({ bill: 1500, taxAtSource: 7000, today: oct29 });
+  assert.equal(job.applies, false);
+  assert.equal(job.reason, 'mostlyAtSource');
+  near(job.january, 1500);
+  assert.equal(job.canCodeOut, true); // owes under £3,000 and pays PAYE
+  assert.equal(c.januaryPayments({ bill: 1500, today: oct29 }).canCodeOut, false); // no PAYE
+});
+
+test('January bill: lower estimate, other amounts and overpayments', () => {
+  // Expecting 2026/27 bill of 3,000 instead of 6,000 → 1,500 each.
+  const low = c.januaryPayments({ bill: 6000, expectedNext: 3000, today: oct29 });
+  assert.equal(low.reduced, true);
+  near(low.fullEach, 3000);
+  near(low.each, 1500);
+  near(low.january, 7500);
+  // A higher estimate never raises them
+  near(c.januaryPayments({ bill: 6000, expectedNext: 9000, today: oct29 }).each, 3000);
+  // Student loan of 400 is paid in January but not counted for payments on account
+  const loan = c.januaryPayments({ bill: 3000, otherDue: 400, today: oct29 });
+  near(loan.each, 1500);
+  near(loan.january, 4900); // 3,000 + 400 + 1,500
+  // Paid 4,000 on account against a 2,000 bill: 2,000 over, 1,000 of it covers January's instalment
+  const over = c.januaryPayments({ bill: 2000, poaPaid: 4000, today: oct29 });
+  near(over.january, 0);
+  near(over.refund, 1000);
+  near(over.july, 1000);
+});
+
+test('January bill: blank form and after the deadline', () => {
+  const blank = c.januaryPayments({ bill: '', today: oct29 });
+  assert.equal(blank.january, 0);
+  assert.equal(blank.applies, false);
+  assert.equal(blank.monthlySaving, 0);
+  const late = c.januaryPayments({ bill: 4000, today: new Date(2027, 1, 5) });
+  assert.equal(late.monthsLeft, 0);
+  assert.equal(late.monthlySaving, 0);
+  assert.equal(c.januaryPayments({ bill: 4000, today: new Date(2027, 0, 31) }).monthsLeft, 1);
+  assert.equal(c.januaryPayments({ bill: 40000, today: oct29 }).overTimeToPayLimit, true);
 });
