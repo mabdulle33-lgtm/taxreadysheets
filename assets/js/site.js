@@ -140,10 +140,10 @@ function addHawkoNote() {
   if (!box || document.querySelector('.hawko-note')) return;
   const trade = HAWKO.trades[box.getAttribute('data-product')];
   if (!trade) return;
-  const link = el('a', { href: HAWKO.url, target: '_blank', rel: 'noopener' }, ['Try Hawko with 10 free posts', newTab()]);
+  const link = el('a', { href: HAWKO.url + (trade.page || ''), target: '_blank', rel: 'noopener' }, ['Try Hawko with 10 free posts', newTab()]);
   const note = el('aside', { class: 'hawko-note', 'aria-label': 'Also from us: Hawko' }, [
     el('p', { class: 'hawko-eyebrow' }, ['Also from the maker of TaxReadySheets']),
-    el('p', {}, [`Short of time to post about your ${trade}? Hawko writes a month of social posts for Instagram, Facebook and your Google listing in minutes, built around UK dates. `, link, ', no card needed.'])
+    el('p', {}, [`Short of time to post about your ${trade.label}? Hawko writes a month of social posts for Instagram, Facebook and your Google listing in minutes, built around UK dates. `, link, ', no card needed.'])
   ]);
   box.after(note);
 }

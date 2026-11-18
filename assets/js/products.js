@@ -99,14 +99,15 @@ export function payhipUrl(key) {
  */
 export const HAWKO = {
   url: 'https://hawko.co.uk/',
+  // Each trade: the words used in the note, and Hawko's page for that trade if it has one.
   trades: {
-    beauty: 'salon, barbershop or beauty room',
-    cleaning: 'cleaning business',
-    dogWalker: 'dog walking or pet sitting business',
-    tutor: 'tutoring business',
-    childminder: 'childminding setting',
-    cis: 'trade business',
-    airbnb: 'holiday let'
+    beauty: { label: 'salon, barbershop or beauty room', page: 'for/salons-and-barbers' },
+    cleaning: { label: 'cleaning business', page: 'for/cleaners' },
+    dogWalker: { label: 'dog walking or pet sitting business', page: 'for/dog-walkers' },
+    tutor: { label: 'tutoring business' },
+    childminder: { label: 'childminding setting' },
+    cis: { label: 'trade business' },
+    airbnb: { label: 'holiday let' }
   }
 };
 
