@@ -6,6 +6,10 @@
 
 export const ETSY_LISTING_BASE = 'https://www.etsy.com/listing/';
 
+// Our own Payhip shop: no marketplace fee, so the same file costs the buyer a little less.
+// A product with a payhip code also gets a "buy it direct" link under its Etsy button.
+export const PAYHIP_BASE = 'https://payhip.com/b/';
+
 export const PRODUCTS = {
   bookkeeping: {
     id: '4595071195',
@@ -29,48 +33,80 @@ export const PRODUCTS = {
   },
   universalCredit: {
     id: '4600811594',
+    payhip: 'JzQWc',
     title: 'Universal Credit Self-Employed Reporting Tracker',
     blurb: 'Total your income and expenses for each assessment period so your monthly UC report takes minutes, not an evening.'
   },
   cis: {
     id: '4601531848',
+    payhip: '7rJpZ',
     title: 'CIS Tax Refund Tracker',
     blurb: 'Log every payment and CIS deduction from each contractor, plus materials and expenses, and watch your estimated refund build up through the year.'
   },
   beauty: {
     id: '4601518891',
+    payhip: 'a0zkl',
     title: 'Beauty Business Spreadsheet',
     blurb: 'Track appointments, product costs, chair or room rent and takings — with service pricing and tax set-aside built in for hair, nails, lashes and brows.'
   },
   reseller: {
     id: '4602486846',
+    payhip: 'J9eZM',
     title: 'Vinted & Reseller Profit Tracker',
     blurb: 'Record what each item cost, what it sold for and the fees and postage, so you can see real profit and have evidence ready if HMRC asks.'
   },
   dogWalker: {
     id: '4602464525',
+    payhip: '9THNr',
     title: 'Dog Walker & Pet Sitter Spreadsheet',
     blurb: 'Manage walks, visits, client payments, mileage and costs, with your profit and tax set-aside updated as you go.'
   },
   landlord: {
     id: '4603537833',
+    payhip: 'He2xc',
     title: 'Landlord Rental Income Spreadsheet',
     blurb: 'Track rent, costs and mortgage interest per property, see profit after tax and keep digital records ready for Making Tax Digital.'
   },
   childminder: {
     id: '4603556166',
+    payhip: '0mhUJ',
     title: 'Childminder Accounts Spreadsheet',
     blurb: 'Record fees, funded hours, food, resources and use-of-home costs, and see your take-home pay and tax estimate month by month.'
   },
   airbnb: {
     id: '4604244047',
+    payhip: 'kgR0t',
     title: 'Airbnb Host Income & Expenses Tracker',
     blurb: 'Log bookings, platform fees, cleaning and bills, and compare Rent a Room, the property allowance and actual expenses for your own figures.'
   },
   driver: {
     id: '4604271596',
+    payhip: 'xZHf0',
     title: 'Taxi, Uber & Delivery Driver Spreadsheet',
     blurb: 'Track fares, platform fees, fuel and mileage side by side and see which HMRC method saves you more tax.'
+  }
+};
+
+export function payhipUrl(key) {
+  const p = PRODUCTS[key];
+  return p && p.payhip ? PAYHIP_BASE + p.payhip : null;
+}
+
+/*
+ * Hawko (hawko.co.uk) is our other product: it writes a month of social posts
+ * for UK local businesses. A short note about it shows on the calculator pages
+ * of trades that win customers through social media.
+ */
+export const HAWKO = {
+  url: 'https://hawko.co.uk/',
+  trades: {
+    beauty: 'salon, barbershop or beauty room',
+    cleaning: 'cleaning business',
+    dogWalker: 'dog walking or pet sitting business',
+    tutor: 'tutoring business',
+    childminder: 'childminding setting',
+    cis: 'trade business',
+    airbnb: 'holiday let'
   }
 };
 

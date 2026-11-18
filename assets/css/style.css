@@ -737,6 +737,13 @@ html:not(.js) .tip { display: none; }
 .product .eyebrow .icon { width: 1rem; height: 1rem; }
 .product-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; }
 .product-note { font-size: .82rem; color: #b9d9d5; }
+.product .product-direct { margin: .8rem 0 0; font-size: .88rem; color: #d8ecea; }
+.product .product-direct a { color: #fff; font-weight: 650; text-decoration: underline; text-underline-offset: 2px; }
+.product .product-direct a:hover { color: #ffd08a; }
+.hawko-note { margin: calc(var(--space-6) * -0.5) 0 var(--space-6); padding: .85rem 1.1rem; border-radius: var(--r-lg); border: 1px solid var(--line); background: var(--surface); font-size: .92rem; }
+.hawko-note p { margin: 0; }
+.hawko-note .hawko-eyebrow { font-size: .74rem; font-weight: 750; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin-bottom: .25rem; }
+.hawko-note a { font-weight: 650; }
 
 /* ----------------------------------------------- content + "on this page" */
 

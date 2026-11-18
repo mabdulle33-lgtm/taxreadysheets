@@ -8,7 +8,7 @@
  */
 
 import { SITE, MAILERLITE_FORM_ACTION, MAILERLITE_EMAIL_FIELD } from './site-config.js';
-import { PRODUCTS, productUrl } from './products.js';
+import { PRODUCTS, productUrl, payhipUrl, HAWKO } from './products.js';
 import { setupTips } from './calc-tools.js';
 
 const root = document.documentElement;
@@ -111,6 +111,41 @@ function fillProducts() {
     });
   });
   document.querySelectorAll('a[data-shop-link]').forEach((a) => { a.href = SITE.etsyShopUrl; });
+  addDirectLinks();
+  addHawkoNote();
+}
+
+const el = (tag, attrs = {}, kids = []) => {
+  const n = document.createElement(tag);
+  Object.entries(attrs).forEach(([k, v]) => n.setAttribute(k, v));
+  kids.forEach((k) => n.append(k));
+  return n;
+};
+const newTab = () => el('span', { class: 'visually-hidden' }, [' (opens in a new tab)']);
+
+/* Under the big product box: "or buy it direct" from our own Payhip shop. */
+function addDirectLinks() {
+  document.querySelectorAll('aside.product[data-product]').forEach((box) => {
+    const url = payhipUrl(box.getAttribute('data-product'));
+    const actions = box.querySelector('.product-actions');
+    if (!url || !actions || box.querySelector('.product-direct')) return;
+    const a = el('a', { href: url, target: '_blank', rel: 'noopener' }, ['buy it direct from our own shop', newTab()]);
+    actions.after(el('p', { class: 'product-direct' }, ['Or ', a, ': no marketplace fees, so it costs a little less.']));
+  });
+}
+
+/* On trade pages: a short note about Hawko, our social post writer. */
+function addHawkoNote() {
+  const box = document.querySelector('aside.product[data-product]');
+  if (!box || document.querySelector('.hawko-note')) return;
+  const trade = HAWKO.trades[box.getAttribute('data-product')];
+  if (!trade) return;
+  const link = el('a', { href: HAWKO.url, target: '_blank', rel: 'noopener' }, ['Try Hawko with 10 free posts', newTab()]);
+  const note = el('aside', { class: 'hawko-note', 'aria-label': 'Also from us: Hawko' }, [
+    el('p', { class: 'hawko-eyebrow' }, ['Also from the maker of TaxReadySheets']),
+    el('p', {}, [`Short of time to post about your ${trade}? Hawko writes a month of social posts for Instagram, Facebook and your Google listing in minutes, built around UK dates. `, link, ', no card needed.'])
+  ]);
+  box.after(note);
 }
 
 const THANKS = 'Thanks! Check your inbox and confirm, then we\'ll email your free calculator.';
