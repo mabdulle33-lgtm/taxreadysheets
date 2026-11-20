@@ -35,31 +35,31 @@ export const PRODUCTS = {
     id: '4600811594',
     payhip: 'JzQWc',
     title: 'Universal Credit Self-Employed Reporting Tracker',
-    blurb: 'Total your income and expenses for each assessment period so your monthly UC report takes minutes, not an evening.'
+    blurb: 'Total your income and expenses for each assessment period so your monthly UC report takes minutes, not an evening. Includes 2025/26 and 2026/27 editions.'
   },
   cis: {
     id: '4601531848',
     payhip: '7rJpZ',
     title: 'CIS Tax Refund Tracker',
-    blurb: 'Log every payment and CIS deduction from each contractor, plus materials and expenses, and watch your estimated refund build up through the year.'
+    blurb: 'Log every payment and CIS deduction from each contractor, plus materials and expenses, and watch your estimated refund build up through the year. Includes 2025/26 and 2026/27 editions.'
   },
   beauty: {
     id: '4601518891',
     payhip: 'a0zkl',
     title: 'Beauty Business Spreadsheet',
-    blurb: 'Track appointments, product costs, chair or room rent and takings — with service pricing and tax set-aside built in for hair, nails, lashes and brows.'
+    blurb: 'Track appointments, product costs, chair or room rent and takings — with service pricing and tax set-aside built in for hair, nails, lashes and brows. Includes 2025/26 and 2026/27 editions.'
   },
   reseller: {
     id: '4602486846',
     payhip: 'J9eZM',
     title: 'Vinted & Reseller Profit Tracker',
-    blurb: 'Record what each item cost, what it sold for and the fees and postage, so you can see real profit and have evidence ready if HMRC asks.'
+    blurb: 'Record what each item cost, what it sold for and the fees and postage, so you can see real profit and have evidence ready if HMRC asks. Includes 2025/26 and 2026/27 editions.'
   },
   dogWalker: {
     id: '4602464525',
     payhip: '9THNr',
     title: 'Dog Walker & Pet Sitter Spreadsheet',
-    blurb: 'Manage walks, visits, client payments, mileage and costs, with your profit and tax set-aside updated as you go.'
+    blurb: 'Manage walks, visits, client payments, mileage and costs, with your profit and tax set-aside updated as you go. Includes 2025/26 and 2026/27 editions.'
   },
   landlord: {
     id: '4603537833',
@@ -71,7 +71,7 @@ export const PRODUCTS = {
     id: '4603556166',
     payhip: '0mhUJ',
     title: 'Childminder Accounts Spreadsheet',
-    blurb: 'Record fees, funded hours, food, resources and use-of-home costs, and see your take-home pay and tax estimate month by month.'
+    blurb: 'Record fees, funded hours, food, resources and use-of-home costs, and see your take-home pay and tax estimate month by month. Includes 2025/26 and 2026/27 editions.'
   },
   airbnb: {
     id: '4604244047',
@@ -83,7 +83,7 @@ export const PRODUCTS = {
     id: '4604271596',
     payhip: 'xZHf0',
     title: 'Taxi, Uber & Delivery Driver Spreadsheet',
-    blurb: 'Track fares, platform fees, fuel and mileage side by side and see which HMRC method saves you more tax.'
+    blurb: 'Track fares, platform fees, fuel and mileage side by side and see which HMRC method saves you more tax. Includes 2025/26 and 2026/27 editions.'
   }
 };
 
